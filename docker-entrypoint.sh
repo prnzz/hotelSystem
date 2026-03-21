@@ -1,3 +1,5 @@
 #!/bin/bash
 set -e
-exec apache2-foreground "$@"
+
+# Start apache
+exec apache2-foreground
