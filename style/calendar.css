@@ -1,0 +1,145 @@
+.calendar-container {
+    width: 100%;
+    max-width: 1000px;
+    margin: 0 auto; /* Centers the calendar */
+    background: #fff;
+    border: 1px solid #ddd;
+    border-radius: 4px; /* Slight rounding for a modern look */
+    overflow: hidden; /* Keeps children inside the border-radius */
+    box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+}
+
+.calendar-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: #34495e; /* Matching your dark dashboard blue */
+    padding: 12px 20px;
+    color: white;
+}
+
+/* Updated Grid logic */
+.calendar-grid {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr); 
+    width: 100%;
+    background-color: #ddd; /* This acts as the border color between cells */
+    gap: 1px; /* Creates thin, consistent lines between days */
+    border-bottom: 1px solid #ddd;
+}
+
+.day-name {
+    background: #f8f9fa;
+    padding: 12px;
+    text-align: center;
+    font-weight: bold;
+    color: #555;
+    text-transform: uppercase;
+    font-size: 0.85rem;
+}
+
+.day {
+    min-height: 120px; /* Taller cells for more space */
+    padding: 10px;
+    background: #fff; /* Individual cell background */
+    position: relative;
+    transition: background 0.2s;
+}
+
+.day:hover {
+    background: #fcfcfc;
+}
+
+.day.empty {
+    background: #fdfdfd;
+}
+
+/* Date Number Styling */
+.date-num {
+    font-weight: 600;
+    color: #333;
+    font-size: 1rem;
+}
+
+/* Today's Date Highlight */
+.day.is-today {
+    background-color: #f0f7ff;
+}
+
+.day.is-today .date-num {
+    background: #3498db;
+    color: white;
+    width: 28px;
+    height: 28px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+}
+
+/* --- Status Styling (Matching your Database Enums) --- */
+
+/* Reserved Status (Orange bar at top) */
+.day.reserved { 
+    background-color: #fff9f1; 
+}
+.day.reserved::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: #e67e22; /* Orange for Reserved */
+}
+
+/* Checked-In Status (Green bar at top) */
+.day.checkedin { 
+    background-color: #f4fff6; 
+}
+.day.checkedin::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: #27ae60; /* Green for Checked-In */
+}
+
+/* Label Styling inside the box */
+.hall-label {
+    display: block;
+    font-size: 11px;
+    margin-top: 12px;
+    padding: 4px 6px;
+    background: #fef0e0; /* Match Reserved bg */
+    border-radius: 3px;
+    font-weight: bold;
+    color: #444;
+}
+
+/* Controls and Buttons */
+.calendar-controls select {
+    padding: 8px 12px;
+    border-radius: 4px;
+    border: 1px solid #ddd;
+    font-size: 14px;
+    font-weight: 600;
+    background: #fff;
+    margin: 0 5px;
+}
+
+.nav-btn, .today-btn {
+    background-color: #3498db;
+    color: white;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+.nav-btn:hover, .today-btn:hover {
+    background-color: #2980b9;
+}

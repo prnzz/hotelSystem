@@ -1,0 +1,139 @@
+
+body {
+    background-color:  #f4f7f6;
+    color: #333;
+}
+.main-header {
+    background-color:  #2c3e50;
+    color: white;
+    padding: 1rem 2rem;
+    font-size: 40px;
+    text-align: center;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    z-index: 1000;
+}
+
+.content-holder {
+    width: 90%;           
+    margin: 0 auto;          
+    display: flex;
+    flex-direction: column;   
+    align-items: center;      
+}
+
+.content-holder h2, 
+.content-holder .title { 
+    text-align: center;
+    width: 100%;
+    margin-bottom: 20px;
+}
+.check{
+    display: flex;
+    gap: 10px;
+    margin-bottom: 10px;
+}
+.check button{
+    padding: 10px 20px;
+    border: 1px solid #2c3e50;
+    background: #fff;
+    color: #2c3e50;
+    border-radius: 50px;
+    cursor: pointer;
+    font-weight: 600;
+    transition: 0.3s;
+}
+.check button:hover{
+    background-color: #3388b0;
+}
+.btn-row {
+    margin: 20px;
+}
+
+.btn{ 
+    background: #3498db; 
+    color: white; 
+    text-decoration: none; 
+    border: transparent;
+    padding: 10px 20px; 
+    border-radius: 6px; 
+    font-size: 0.85rem; 
+    font-weight: 600;
+    display: inline-flex; 
+    align-items: center; 
+    gap: 8px; 
+    cursor: pointer;
+    box-shadow: 0 9px #999;
+}
+.btn:active{
+    box-shadow: 0 5px #666;
+    transform: translateY(4px);
+}
+/* Container for the table section */
+.table-wrapper {
+    width: 100%;
+    min-width: fit-content;
+    background: white;
+    border-radius: 8px;
+    overflow: hidden; /* Clips the inner content to the rounded corners */
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    margin-top: 20px;
+}
+
+/* The Dark Blue Title Bar */
+.table-header {
+    background-color: #2c3e50;
+    color: #ffffff;
+    padding: 15px;
+    text-align: center;
+    font-weight: bold;
+    font-size: 1.1rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+/* Scroll area height control */
+.table-scroll {
+    max-height: 300px;
+    overflow-y: auto;
+    overflow-x: hidden; /* Prevents horizontal scroll by compressing data */
+}
+
+.reservationTable {
+    width: 100%;
+    border-collapse: collapse;
+    table-layout: auto;
+}
+
+/* Header Cells */
+.reservationTable th {
+    text-align: center;
+    background: #fdfdfd;
+    color: #555;
+    padding: 10px;
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    border-bottom: 2px solid #ebebeb;
+    position: sticky;
+    top: 0;
+    z-index: 5;
+}
+
+/* Body Cells */
+.reservationTable td {
+    padding: 15px;
+    border-bottom: 1px solid #f0f0f0;
+    font-size: 0.85rem;
+    color: #333;
+    text-align: center;
+    vertical-align: middle;
+    white-space: nowrap;
+    word-wrap: break-word;
+}
+.reservationTable button {
+    padding: 6px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-weight: 600;
+    font-size: 0.8rem;
+}

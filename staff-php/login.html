@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+    <main>
+        <h2>Welcome Staff of Front Desk!</h2>
+
+        <div class="loginForm">
+            <input type="text" id="username" placeholder="Enter Username" required>
+            <input type="password" id="password" placeholder="Enter Password" required>
+            <button type="submit" onclick="login();">Login</button>
+        </div>
+    </main>
+</body>
+<script>
+
+    function login() {
+        var username = document.getElementById("username");
+        var password = document.getElementById("password");
+        
+        if(username.value == ""){
+            alert("Please enter username to proceed!")
+            username.focus();
+        } else if (password.value == "") {
+            alert("Please enter password to proceed!")
+            username.focus();
+        } else {
+            fetch("php/verifyCredential.php?user="+ username.value + "pass=" +password.value)
+                .then(response => response.text())
+                .then(data => {
+                    var res = "";
+                    res = data;
+                if(res == "0"){
+                    alert("Account combination is Invalid!")
+                }else{
+                    window.location.href = "index.html";
+                }
+                })
+            
+        }
+    }
+</script>
+</html>

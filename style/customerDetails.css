@@ -1,0 +1,54 @@
+/*customer details*/
+/* Layout Container */
+.user-information {
+    padding: 20px;
+    background-color: #f9f9f9;
+    border-radius: 8px;
+}
+
+.user-information h2 {
+    color: #333;
+    border-bottom: 2px solid #007bff;
+    padding-bottom: 10px;
+    margin-bottom: 20px;
+}
+
+/* Common Section Styling */
+.information, .payment, .unit {
+    background: #ffffff;
+    padding: 15px;
+    margin-bottom: 20px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+}
+
+.information h3, .payment h3, .unit h3 {
+    margin-top: 0;
+    font-size: 1.1rem;
+    color: #0056b3;
+    border-bottom: 1px solid #eee;
+    padding-bottom: 8px;
+    margin-bottom: 12px;
+}
+
+/* Simple Table Styling */
+.payment table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.payment th, .payment td {
+    text-align: left;
+    padding: 10px;
+    border-bottom: 1px solid #eee;
+}
+
+.payment th {
+    background-color: #f8f9fa;
+    color: #555;
+}
+
+.payment tr:last-child td {
+    border-bottom: none;
+}
