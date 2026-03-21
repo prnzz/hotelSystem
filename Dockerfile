@@ -1,20 +1,21 @@
 FROM php:8.2-apache
 
-# Install extensions
+# 1. Install extensions
 RUN docker-php-ext-install mysqli pdo pdo_mysql
 
-# Enable Apache rewrite
+# 2. Fix Apache MPM conflict (Do this BEFORE copying files)
+RUN a2dismod mpm_event || true && a2enmod mpm_prefork || true
 RUN a2enmod rewrite
 
-# Copy all files
+# 3. Copy files and set permissions
 COPY . /var/www/html/
-
-# Set permissions
 RUN chown -R www-data:www-data /var/www/html
 
-EXPOSE 80
-RUN a2dismod mpm_event || true && a2enmod mpm_prefork || true
+# 4. Setup Entrypoint
 COPY docker-entrypoint.sh /usr/local/bin/
 RUN chmod +x /usr/local/bin/docker-entrypoint.sh
+
+EXPOSE 80
+
 ENTRYPOINT ["docker-entrypoint.sh"]
 CMD ["apache2-foreground"]
