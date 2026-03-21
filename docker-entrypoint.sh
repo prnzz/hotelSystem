@@ -1,5 +1,3 @@
 #!/bin/bash
-set -e
-
-# Start apache
+# Start Apache in the foreground
 exec apache2-foreground
