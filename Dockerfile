@@ -1,13 +1,12 @@
+
 FROM php:8.2-apache
-
-# 1. Fix MPM conflict and install extensions
-RUN a2dismod mpm_event || true && \
-    a2enmod mpm_prefork || true && \
-    docker-php-ext-install mysqli pdo pdo_mysql && \
-    a2enmod rewrite
-
-# 2. Copy files and set permissions
+RUN if [ -f /etc/apache2/mods-enabled/mpm_event.load ]; then a2dismod mpm_event; fi && \
+    a2enmod mpm_prefork rewrite headers
+RUN docker-php-ext-install mysqli pdo pdo_mysql
 COPY . /var/www/html/
-RUN chown -R www-data:www-data /var/www/html
-
+RUN chown -R www-data:www-data /var/www/html && \
+    chmod -R 755 /var/www/html
+RUN a2enmod log_config
 EXPOSE 80
+# Start Apache using our startup script
+CMD ["./start-apache.sh"]
