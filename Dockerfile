@@ -1,20 +1,23 @@
 FROM php:8.2-apache
 
-# Install extensions
+# 1. Fix the MPM conflict immediately
+RUN a2dismod mpm_event || true && a2enmod mpm_prefork || true
+
+# 2. Install database extensions
 RUN docker-php-ext-install mysqli pdo pdo_mysql
 
-# Enable Apache rewrite
+# 3. Enable Apache rewrite
 RUN a2enmod rewrite
 
-# Copy all files
+# 4. Copy your Hotel System files
 COPY . /var/www/html/
-
-# Set permissions
 RUN chown -R www-data:www-data /var/www/html
+
+# 5. Setup the entrypoint script
+COPY docker-entrypoint.sh /usr/local/bin/
+RUN chmod +x /usr/local/bin/docker-entrypoint.sh
 
 EXPOSE 80
 
-COPY docker-entrypoint.sh /usr/local/bin/
-RUN chmod +x /usr/local/bin/docker-entrypoint.sh
 ENTRYPOINT ["docker-entrypoint.sh"]
 CMD ["apache2-foreground"]
