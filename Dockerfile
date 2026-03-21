@@ -1,20 +1,19 @@
 FROM php:8.2-apache
 
-# 1. Force-fix MPM conflict and install extensions in one step
-RUN a2dismod mpm_event || true && \
-    a2enmod mpm_prefork || true && \
-    docker-php-ext-install mysqli pdo pdo_mysql && \
-    a2enmod rewrite
+# Install necessary extensions
+RUN docker-php-ext-install mysqli pdo pdo_mysql
 
-# 2. Copy files and set permissions
+# Enable the rewrite module
+RUN a2enmod rewrite
+
+# Copy your project files
 COPY . /var/www/html/
+
+# Set permissions
 RUN chown -R www-data:www-data /var/www/html
 
-# 3. Setup Entrypoint
-COPY docker-entrypoint.sh /usr/local/bin/
-RUN chmod +x /usr/local/bin/docker-entrypoint.sh
-
+# Expose port 80
 EXPOSE 80
 
-ENTRYPOINT ["docker-entrypoint.sh"]
+# The standard command to start Apache in this container
 CMD ["apache2-foreground"]
