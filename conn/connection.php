@@ -6,9 +6,9 @@ $password = getenv('MYSQLPASSWORD');
 $database = getenv('MYSQLDATABASE'); // This will be 'railway' based on your photo
 $port     = getenv('MYSQLPORT');
 
-$conn = mysqli_connect($host, $username, $password, $database, $port);
+$db = mysqli_connect($host, $username, $password, $database, $port);
 
-if (!$conn) {
+if (!$db) {
     die("Connection failed: " . mysqli_connect_error());
 }
 ?>
