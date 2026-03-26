@@ -30,7 +30,7 @@
             alert("Please enter password to proceed!")
             username.focus();
         } else {
-            fetch("php/verifyCredential.php?user="+ username.value + "pass=" +password.value)
+            fetch("php/verifyCredential.php?user=" + encodeURIComponent(username.value) + "&pass=" + encodeURIComponent(password.value))
                 .then(response => response.text())
                 .then(data => {
                     var res = "";
