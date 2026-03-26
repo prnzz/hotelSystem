@@ -7,7 +7,9 @@ $pass = $_GET["pass"];
 
 include("../../conn/connection.php");
 $dbconn = mysqli_connect($host, $username, $password, $database);
-$loadCredential = mysqli_query($dbconn, "SELECT * FROM users WHERE username = '$user' AND password = '$pass'");
+$loadCredential = mysqli_query($dbconn, 
+    "SELECT * FROM users WHERE username = '$user' AND password = '$pass' AND role = 'staff'"
+);
 
 $id = "";
 $username = "";
