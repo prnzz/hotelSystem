@@ -16,7 +16,7 @@ $nextYear = ($month == 12) ? $year + 1 : $year;
 
 $firstOfMonth = "$year-" . sprintf("%02d", $month) . "-01";
 $firstDayIdx = (int)date('w', strtotime($firstOfMonth));
-$daysInMonth = cal_days_in_month(CAL_GREGORIAN, $month, $year);
+$daysInMonth = (int)date('t', strtotime(sprintf('%04d-%02d-01', $year, $month)));
 
 // FETCH ONLY FUNCTION HALL BOOKINGS
 $stmt = $conn->prepare("
@@ -80,12 +80,10 @@ while($row = $result->fetch_assoc()) {
         <div class="day-name">Wed</div><div class="day-name">Thu</div><div class="day-name">Fri</div><div class="day-name">Sat</div>
 
         <?php
-        // 1. Render Empty Slots
         for ($x = 0; $x < $firstDayIdx; $x++) {
             echo "<div class='day empty'></div>";
         }
 
-        // 2. Render Actual Dates
         for ($i = 1; $i <= $daysInMonth; $i++):
             $currentDate = sprintf("%04d-%02d-%02d", $year, $month, $i);
             $dayBookings = $booked_ranges[$currentDate] ?? [];
