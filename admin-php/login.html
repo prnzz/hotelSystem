@@ -8,7 +8,7 @@
 <body>
     
     <main>
-        <h2>Welcome Admin/Owner!</h2>
+        <h2>Welcome Staff of Front Desk!</h2>
 
         <div class="loginForm">
             <input type="text" id="username" placeholder="Enter Username" required>
@@ -30,14 +30,14 @@
             alert("Please enter password to proceed!")
             username.focus();
         } else {
-            fetch("php/verifyCredential.php?user="+ username.value + "pass=" +password.value)
+            fetch("php/verifyCredential.php?user=" + username.value + "&pass=" + password.value)
                 .then(response => response.text())
                 .then(data => {
                     var res = "";
                     res = data;
-                if(res == "0"){
-                    alert("Account combination is Invalid!")
-                }else{
+                if (res === "0") {
+                    alert("Account combination is invalid!");
+                } else {
                     window.location.href = "index.html";
                 }
                 })
