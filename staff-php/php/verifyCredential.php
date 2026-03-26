@@ -14,7 +14,7 @@ $username = "";
 $password = "";
 
 while($res = mysqli_fetch_array($loadCredential)){
-    $id = $res["id"];
+    $id = $res["user_id"];
     $username = $res["username"];
     $password = $res["password"];
 }
