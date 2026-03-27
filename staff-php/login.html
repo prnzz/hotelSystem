@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="favicon.ico">
     <link rel="stylesheet" href="../style/style.css">
     <title>Document</title>
 </head>
@@ -29,7 +30,7 @@
             username.focus();
         } else if (password.value == "") {
             alert("Please enter password to proceed!")
-            username.focus();
+            password.focus();
         } else {
             fetch("php/verifyCredential.php?user=" + username.value + "&pass=" + password.value)
                 .then(response => response.text())

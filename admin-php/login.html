@@ -29,7 +29,7 @@
             username.focus();
         } else if (password.value == "") {
             alert("Please enter password to proceed!")
-            username.focus();
+            password.focus();
         } else {
             fetch("php/verifyCredential.php?user=" + username.value + "&pass=" + password.value)
                 .then(response => response.text())
