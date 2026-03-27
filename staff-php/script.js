@@ -5,7 +5,7 @@ function verifylog(){
     .then(data => {
         var res = "";
         res = data;
-        if(res == "0") {
+        if(res == "1") {
             window.location.href = "login.html";
         }
     })
