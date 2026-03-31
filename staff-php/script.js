@@ -169,7 +169,6 @@ function saveReservation() {
     if (unit_id.value == "") {
         alert("Please select a unit.");
     } else {
-        // Fetch keys must match the $_GET keys in save_reservation.php
         fetch("php/save_reservation.php?guest_name=" + guest_name.value + 
               "&contact=" + contact.value + 
               "&unit_id=" + unit_id.value + 
@@ -180,7 +179,7 @@ function saveReservation() {
         .then(response => response.text());
         
         alert("Reservation Saved Successfully!");
-        loadReservation(); // Refreshes the list
+        loadReservation();
     }
 }
 
@@ -223,14 +222,13 @@ function initReservationLogic() {
 
 function confirmReservation(reservationId) {
     if (confirm("Are you sure you want to confirm this reservation?")) {
-        // Build the URL exactly like your saveReservation style
         fetch("php/update_reservation.php?reservation_id=" + reservationId + 
               "&action=confirm")
         .then(response => response.text())
         .then(data => {
             if (data.trim() === "success") {
                 alert("Reservation Confirmed!");
-                loadReservation(); // Refresh the list
+                loadReservation(); 
             } else {
                 alert("Error: " + data);
             }
@@ -240,7 +238,6 @@ function confirmReservation(reservationId) {
 
 function cancelReservation(reservationId, unitId) {
     if (confirm("Are you sure you want to cancel this reservation?")) {
-        // Built with multiple parameters using &
         fetch("php/update_reservation.php?reservation_id=" + reservationId + 
               "&unit_id=" + unitId + 
               "&action=cancel")
@@ -248,7 +245,7 @@ function cancelReservation(reservationId, unitId) {
         .then(data => {
             if (data.trim() === "success") {
                 alert("Reservation Cancelled and Room is now Available.");
-                loadReservation(); // Refresh the list
+                loadReservation(); 
             } else {
                 alert("Error: " + data);
             }
@@ -262,7 +259,6 @@ function submitPayment() {
     var amount_paid = document.getElementById('amount_paid');
     var payment_method = document.getElementById('payment_method');
 
-    // Simple math check before sending
     var totalBill = parseFloat(amount_to_pay.value) || 0;
     var paid = parseFloat(amount_paid.value) || 0;
 
@@ -270,7 +266,6 @@ function submitPayment() {
         alert("Error: Amount paid is less than the total bill.");
     } else {
         if (confirm("Confirm payment of ₱" + paid.toFixed(2) + "?")) {
-            // Same style: php/file.php?key=value&key2=value2
             fetch("php/save_payment.php?res_id=" + res_id.value + 
                   "&amount_paid=" + amount_paid.value + 
                   "&method=" + payment_method.value)
@@ -288,13 +283,12 @@ function submitPayment() {
 }
 function checkOut(resId, unitId) {
     if (confirm("Are you sure you want to check out this guest? The room status will be set to 'Maintenance'.")) {
-        // Built with ? and & to match your established style
         fetch("php/process_checkout.php?res_id=" + resId + "&unit_id=" + unitId)
         .then(response => response.text())
         .then(result => {
             if (result.trim() === "success") {
                 alert("Check-out successful!");
-                loadcheck_inCustomer(); // Refresh list
+                loadcheck_inCustomer(); 
             } else {
                 alert("Error: " + result);
             }
@@ -304,7 +298,6 @@ function checkOut(resId, unitId) {
 
 function doneCleaning(unitId) {
     if (confirm("Set this room back to 'Available'?")) {
-        // Built with ? and & to match your established style
         fetch("php/done_cleaning.php?unit_id=" + unitId)
         .then(response => response.text())
         .then(result => {
