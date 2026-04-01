@@ -19,16 +19,7 @@ $firstDayIdx = (int)date('w', strtotime($firstOfMonth));
 $daysInMonth = (int)date('t', strtotime(sprintf('%04d-%02d-01', $year, $month)));
 
 // FETCH ONLY FUNCTION HALL BOOKINGS
-$stmt = $conn->prepare("
-    SELECT r.*, u.unit_name 
-    FROM reservations r 
-    JOIN units u ON r.unit_id = u.unit_id 
-    JOIN categories c ON u.category_id = c.category_id 
-    WHERE c.category_name = 'FUNCTION HALL' 
-    AND (r.check_in_date <= LAST_DAY(?)) 
-    AND (r.expected_check_out >= ?)
-    AND r.status != 'Cancelled'
-");
+$stmt = $conn->prepare("SELECT * FROM `check_in_out_master` WHERE category_name = 'FUNCTION HALL' AND (check_in_date <= ? AND expected_check_out >= ?)");
 $stmt->bind_param("ss", $firstOfMonth, $firstOfMonth);
 $stmt->execute();
 $result = $stmt->get_result();
@@ -42,7 +33,7 @@ while($row = $result->fetch_assoc()) {
     
     foreach ($period as $date) {
         $booked_ranges[$date->format("Y-m-d")][] = [
-            'unit' => $row['category_name'] . " - " . $row['unit_name'], 
+            'unit' => $row['unit_type'] . " - " . $row['unit_name'], 
             'status' => $row['status']
         ];
     }
