@@ -73,8 +73,8 @@ while ($row = $result->fetch_assoc()) {
 <div class="calendar-container">
     <div class="calendar-header">
         <div class="header-left">
-            <button class="nav-btn" onclick="loadAllUnitsCalendar(<?php echo $prevMonth; ?>, <?php echo $prevYear; ?>)">&laquo;</button>
-            <button class="today-btn" onclick="loadAllUnitsCalendar(<?php echo $todayM; ?>, <?php echo $todayY; ?>)">Today</button>
+            <button class="nav-btn" onclick="functionHallCalendar(<?php echo $prevMonth; ?>, <?php echo $prevYear; ?>)">&laquo;</button>
+            <button class="today-btn" onclick="functionHallCalendar(<?php echo $todayM; ?>, <?php echo $todayY; ?>)">Today</button>
         </div>
 
         <div class="calendar-controls">
@@ -96,7 +96,7 @@ while ($row = $result->fetch_assoc()) {
         </div>
 
         <div class="header-right">
-            <button class="nav-btn" onclick="loadAllUnitsCalendar(<?php echo $nextMonth; ?>, <?php echo $nextYear; ?>)">&raquo;</button>
+            <button class="nav-btn" onclick="functionHallCalendar(<?php echo $nextMonth; ?>, <?php echo $nextYear; ?>)">&raquo;</button>
         </div>
     </div>
 
