@@ -120,7 +120,7 @@ function loadCheckoutFuntionhall(){
 // Function Hall Calendar
 function functionHallCalendar(month, year) {
     const container = document.getElementById("calendar-container"); // change if your container id is different
-    fetch(`admin-php/php/checkin/all-units-calendar.php?m=${month}&y=${year}`)
+    fetch('php/FHcalendar.php' + `?m=${month}&y=${year}`)
         .then(response => response.text())
         .then(html => {
             container.innerHTML = html;
