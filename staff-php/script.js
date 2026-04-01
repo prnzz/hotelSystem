@@ -118,24 +118,23 @@ function loadCheckoutFuntionhall(){
     });
 }
 // Function Hall Calendar
-function functionHallCalendar(m = '', y = '') {
-    let url = 'php/FHcalendar.php';
-    if (m !== '' && y !== '') {
-        url += `?m=${m}&y=${y}`;
-    }
-
-    fetch(url)
-    .then(response => response.text())
-    .then(data => {
-        document.getElementById("Tblcontent").innerHTML = data; 
-    })
-    .catch(error => console.error('Error:', error));
+function functionHallCalendar(month, year) {
+    const container = document.getElementById("calendar-container"); // change if your container id is different
+    fetch(`admin-php/php/checkin/all-units-calendar.php?m=${month}&y=${year}`)
+        .then(response => response.text())
+        .then(html => {
+            container.innerHTML = html;
+        })
+        .catch(error => {
+            console.error("Calendar load error:", error);
+            container.innerHTML = "<p>Failed to load calendar.</p>";
+        });
 }
 
 function jumpToDate() {
-    const m = document.getElementById('select_month').value;
-    const y = document.getElementById('select_year').value;
-    functionHallCalendar(m, y);
+    const month = document.getElementById("select_month").value;
+    const year = document.getElementById("select_year").value;
+    loadAllUnitsCalendar(month, year);
 }
 
 //Reservation Functions
