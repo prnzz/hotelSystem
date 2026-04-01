@@ -131,7 +131,6 @@ function updateDashboardStats() {
         .catch(error => console.error('Error loading stats:', error));
 }
 
-// Run on load and every 30 seconds to keep data fresh
 updateDashboardStats();
 setInterval(updateDashboardStats, 30000);
 
@@ -140,21 +139,18 @@ function editReservation(resId) {
     .then(response => response.text())
     .then(data => {
         document.getElementById("Tblcontent").innerHTML = data;
-        
-        // Pass "edit_" here!
         initReservationLogic("edit_"); 
     });
 }
 
 function deleteReservation(resId) {
     if (confirm("Are you sure you want to PERMANENTLY delete this reservation? This cannot be undone.")) {
-        // Built using your standard GET style
         fetch("php/delete_reservation.php?reservation_id=" + resId)
         .then(response => response.text())
         .then(result => {
             if (result.trim() === "success") {
                 alert("Reservation Deleted Successfully!");
-                loadReservation(); // Refresh the admin table
+                loadReservation(); 
             } else {
                 alert("Error: " + result);
             }
@@ -185,14 +181,13 @@ function updateReservationData(resId) {
         .then(result => {
             if (result.trim() === "success") {
                 alert("Reservation Updated Successfully!");
-                loadReservation(); // Reload the table to see changes
+                loadReservation(); 
             } else {
                 alert("Update Failed: " + result);
             }
         });
     }
 }
-// Add (prefix = "") right here:
 function initReservationLogic(prefix = "") {
     var unitSelect = document.getElementById(prefix + 'unit_id');
     var checkInInput = document.getElementById(prefix + 'check_in'); 
