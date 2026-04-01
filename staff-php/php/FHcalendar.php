@@ -42,7 +42,7 @@ while($row = $result->fetch_assoc()) {
     
     foreach ($period as $date) {
         $booked_ranges[$date->format("Y-m-d")][] = [
-            'unit' => $row['unit_name'], 
+            'unit' => $row['category_name'] . " - " . $row['unit_name'], 
             'status' => $row['status']
         ];
     }
