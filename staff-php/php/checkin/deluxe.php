@@ -11,7 +11,7 @@
                     <thead>
                         <tr>
                             <th>ID</th>
-                            <th>CUSTOMER NAME</th>
+                            <th>CUSTOMER NAME</th>      
                             <th>CONTACT</th>
                             <th>CHECK-IN</th>
                             <th>CHECK-OUT</th>
