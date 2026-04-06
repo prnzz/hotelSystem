@@ -20,6 +20,7 @@
                             <th>UNIT TYPE</th>
                             <th>TOTAL AMOUNT</th>
                             <th>STATUS</th>
+                            <th>PAYMENT</th>
                             <th>ACTION</th>
                         </tr>
                     </thead>
@@ -43,6 +44,15 @@
                             <td><?php echo ($row['unit_type']) ?></td>
                             <td><?php echo ($row['total_amount']) ?></td>
                             <td><?php echo ($row['status']) ?></td>
+                            <td>
+                                <span class="badge <?php 
+                                    if($row['payment_status'] == 'Paid') echo 'badge-success'; 
+                                    else if($row['payment_status'] == 'Partial') echo 'badge-warning'; 
+                                    else echo 'badge-danger'; 
+                                ?>">
+                                    <?php echo $row['payment_status']; ?>
+                                </span>
+                            </td>
                             <td>
                                     <button type="button" class="btn btn-secondary" 
                                         onclick="checkOut('<?php echo $row['reservation_id']; ?>', '<?php echo $row['unit_id']; ?>')">
