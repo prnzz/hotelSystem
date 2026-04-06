@@ -2,7 +2,7 @@
 $res_id = "";
 $res_id = $_GET['res_id'];
 $amount = "";
-$amount = $_GET['amount_paid'];
+$amount = $_GET['total'];
 $method = "";
 $method = $_GET['method'];
 

@@ -365,7 +365,7 @@ function submitPayment() {
         "Proceed with transaction?"
     )) {
         fetch("php/save_payment.php?res_id=" + res_id.value + 
-              "&amount_paid=" + paid + 
+              "&total=" + totalBill + 
               "&method=" + payment_method.value)
         .then(response => response.text())
         .then(result => {
