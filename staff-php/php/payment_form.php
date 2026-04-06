@@ -26,27 +26,32 @@ if ($res_id) {
         <p><strong>Total Bill:</strong> ₱<?php echo number_format($data['total_bill'], 2); ?></p>
     </div>
 
-    <div class="payment">
-        <h3>Payment Entry</h3>
-        <form id="payForm">
-            <input type="hidden" id="res_id" name="res_id" value="<?php echo $res_id; ?>">
-            
-    <div style="margin-bottom: 10px;">
-        <label>Amount to Pay:</label><br>
-        <input type="number" id="amount_to_pay" value="<?php echo $data['total_bill']; ?>" step="0.01" readonly style="width: 100%; padding: 8px;">
-    </div>
+<div class="payment">
+    <h3>Payment Entry</h3>
+    <form id="payForm">
+        <input type="hidden" id="res_id" name="res_id" value="<?php echo $res_id; ?>">
+        
+        <div style="margin-bottom: 10px;">
+            <label>Amount to Pay:</label><br>
+            <input type="number" id="amount_to_pay" value="<?php echo $data['total_bill']; ?>" step="0.01" readonly style="width: 100%; padding: 8px;">
+        </div>
 
-    <div style="margin-bottom: 10px;">
-        <label>Amount Paid:</label><br>
-        <input type="number" id="amount_paid" name="amount_paid" placeholder="0.00" step="0.01" oninput="calculateChange()" style="width: 100%; padding: 8px;" required>
-    </div>
+        <div style="margin-bottom: 15px;">
+            <label>Amount Paid:</label><br>
+            <input type="number" id="amount_paid" placeholder="0.00" step="0.01"
+                   style="width: 100%; padding: 8px;"
+                   oninput="calculateChange()" required>
+        </div>
 
-    <div style="margin-bottom: 10px;">
-        <label>Change:</label><br>
-        <input type="text" id="change_display" value="0.00" readonly style="width: 100%; padding: 8px; background: #f1f1f1;">
-    </div>
+        <!-- 💵 CHANGE DISPLAY -->
+        <div style="margin-bottom: 10px;">
+            <label>Change (Sukli):</label><br>
+            <input type="text" id="change_display" value="0.00" readonly
+                   style="width: 100%; padding: 8px; background: #f1f1f1;">
+        </div>
 
-    <div id="payment_error" style="color:red; margin-bottom:10px;"></div>
+        <!-- ❗ VALIDATION MESSAGE -->
+        <div id="payment_error" style="color: red; margin-bottom: 10px;"></div>
 
         <div style="margin-bottom: 15px;">
             <label>Payment Method:</label><br>
