@@ -257,13 +257,19 @@ function cancelReservation(reservationId, unitId) {
 }
 
 function calculateChange() {
-    const amountToPay = parseFloat(document.getElementById("amount_to_pay").value) || 0;
-    const amountPaid = parseFloat(document.getElementById("amount_paid").value) || 0;
-
-    const change = amountPaid - amountToPay;
-
+    const amountToPayInput = document.getElementById("amount_to_pay");
+    const amountPaidInput = document.getElementById("amount_paid");
     const changeDisplay = document.getElementById("change_display");
     const errorDiv = document.getElementById("payment_error");
+
+    if (!amountToPayInput || !amountPaidInput || !changeDisplay || !errorDiv) {
+        console.error("Missing required payment elements.");
+        return;
+    }
+
+    const amountToPay = parseFloat(amountToPayInput.value) || 0;
+    const amountPaid = parseFloat(amountPaidInput.value) || 0;
+    const change = amountPaid - amountToPay;
 
     if (amountPaid <= 0) {
         changeDisplay.value = "0.00";
