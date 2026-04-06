@@ -291,14 +291,35 @@ function editRoom(unitId) {
     });
 }
 
-function updateRoomData(uId) {
-    var uName = document.getElementById('edit_unit_name').value;
-    var uStatus = document.getElementById('edit_status').value;
+function updateRoomData(unit_id) {
+    var name = document.getElementById('new_unit_name').value;
+    var type = document.getElementById('new_unit_type').value;
+    var category = document.getElementById('new_category').value;
+    var new_unit_type = document.getElementById('input_new_unit_type').value;
+    var new_price_per_day = document.getElementById('input_new_price_per_day').value;
 
-    if (confirm("Are you sure you want to save changes to this unit?")) {
-        fetch("php/save_edit_room.php?id=" + uId + 
-              "&name=" + encodeURIComponent(uName) + 
-              "&status=" + uStatus)
+    if (name == "" || category == "0") {
+        alert("Please fill in all fields.");
+        return;
+    }
+
+    if (type == "0" && new_unit_type == "") {
+        alert("Please select a unit type or enter a new unit type.");
+        return;
+    }
+
+    if (new_unit_type != "" && new_price_per_day == "") {
+        alert("Please enter the price per day for the new unit type.");
+        return;
+    }
+
+    if (confirm("Are you sure you want to update this room?")) {
+        fetch("php/save_edit_room.php?unit_id=" + unit_id +
+              "&name=" + name + 
+              "&type=" + type + 
+              "&category=" + category +
+              "&new_unit_type=" + new_unit_type +
+              "&new_price_per_day=" + new_price_per_day)
         .then(response => response.text())
         .then(result => {
             if (result.trim() === "success") {

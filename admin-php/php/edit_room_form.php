@@ -2,11 +2,10 @@
 include('../../conn/connection.php');
 $db = mysqli_connect($host, $username, $password, $database);
 
-// Initialize ID from GET request
 $u_id = isset($_GET['unit_id']) ? mysqli_real_escape_string($db, $_GET['unit_id']) : null;
 
 if ($u_id) {
-    // Fetch current details from the roomlist view
+
     $query = mysqli_query($db, "SELECT * FROM roomlist WHERE unit_id = '$u_id'");
     $row = mysqli_fetch_array($query);
 
@@ -19,29 +18,50 @@ if ($u_id) {
         <h2>Edit Room Details</h2>
         <br>
 
-        <form id="editRoomForm">
-            <input type="hidden" id="edit_unit_id" value="<?php echo $u_id; ?>">
+        <label>Unit Name / Number</label><br>
+        <input type="text" id="new_unit_name" value="<?php echo htmlspecialchars($row['unit_name']); ?>" placeholder="e.g. Room 101"><br><br>
 
-            <label>Unit Name / Number</label><br>
-            <input type="text" id="edit_unit_name" value="<?php echo $row['unit_name']; ?>">
-            <br><br>
+        <label>Unit Type</label><br>
+        <select id="new_unit_type">
+            <option value="0">-- Select Type --</option>
+            <?php 
+            $types = mysqli_query($db, "SELECT * FROM unit_types");
+            while($t = mysqli_fetch_array($types)) { 
+                $selected = ($t['unit_type_id'] == $row['unit_type_id']) ? "selected" : "";
+            ?>
+                <option value="<?php echo $t['unit_type_id']; ?>" <?php echo $selected; ?>>
+                    <?php echo $t['unit_type_name']; ?> (₱<?php echo $t['price_per_day']; ?>)
+                </option>
+            <?php } ?>
+        </select><br><br>
 
-            <label>Unit Type & Category</label><br>
-            <input type="text" value="<?php echo $row['unit_type_name']; ?> - <?php echo $row['category_name']; ?>" readonly>
-            <br><br>
-            <label>Status</label><br>
-            <select id="edit_status">
-                <option value="Available" <?php if($row['status'] == 'Available') echo 'selected'; ?>>Available</option>
-                <option value="Occupied" <?php if($row['status'] == 'Occupied') echo 'selected'; ?>>Occupied</option>
-                <option value="Maintenance" <?php if($row['status'] == 'Maintenance') echo 'selected'; ?>>Maintenance</option>
-            </select>
-            <br><br>
+        <small>Or create new unit type:</small><br>
+        <input type="text" id="input_new_unit_type" placeholder="New Unit Type (e.g. Deluxe)"><br><br>
 
-            <button type="button" id="<?php echo $u_id; ?>" onclick="updateRoomData(this.id)">Update Room</button>
-        </form>
+        <input type="number" id="input_new_price_per_day" value="<?php echo $row['price_per_day']; ?>" placeholder="Price per Day" step="0.01"><br><br>
+
+        <label>Category</label><br>
+        <select id="new_category">
+            <option value="0">-- Select Category --</option>
+            <?php 
+            $cats = mysqli_query($db, "SELECT * FROM categories");
+            while($c = mysqli_fetch_array($cats)) { 
+                $selected = ($c['category_id'] == $row['category_id']) ? "selected" : "";
+            ?>
+                <option value="<?php echo $c['category_id']; ?>" <?php echo $selected; ?>>
+                    <?php echo $c['category_name']; ?>
+                </option>
+            <?php } ?>
+        </select><br><br>
+
+        <button type="button" id="<?php echo $u_id; ?>" onclick="updateRoomData(this.id)">Update Room</button>
     </div>
 </main>
 <?php 
-    } 
-} 
+    } else {
+        echo "<p style='text-align:center; color:red;'>Room not found.</p>";
+    }
+} else {
+    echo "<p style='text-align:center; color:red;'>Invalid room ID.</p>";
+}
 ?>
