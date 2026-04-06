@@ -11,35 +11,35 @@
 <body>
     <div class="main-header">ADMIN DASHBOARD</div>
 
-    <div class="chart-analysis">
-        <div class="daily-sales" style="display: flex; justify-content: space-around; padding: 15px; background: #f4f4f4; border: 1px solid #ccc; width: 100%; flex-wrap: wrap; gap: 10px;">
-            
-            <div style="text-align: center; min-width: 120px;">
-                <small style="font-weight: bold; color: #555;">DAILY OCCUPANCY</small>
-                <div id="occ_data" style="font-size: 18px; font-weight: bold;">Rooms: 0 | Halls: 0</div>
-            </div>
+<div class="chart-analysis">
+    <div class="daily-sales" style="display: flex; justify-content: space-around; padding: 15px; background: #f4f4f4; border: 1px solid #ccc; width: 100%; flex-wrap: wrap; gap: 10px;">
+        
+        <div style="text-align: center; min-width: 120px;">
+            <small style="font-weight: bold; color: #555;">DAILY OCCUPANCY</small>
+            <div id="occ_data" style="font-size: 18px; font-weight: bold;">Rooms: 0 | Halls: 0</div>
+        </div>
 
-            <div style="text-align: center; min-width: 120px;">
-                <small style="font-weight: bold; color: #555;">ROOM INCOME</small>
-                <div id="room_income" style="font-size: 18px; font-weight: bold; color: green;">₱0.00</div>
-            </div>
+        <div style="text-align: center; min-width: 120px;">
+            <small style="font-weight: bold; color: #555;">ROOM INCOME</small>
+            <div id="room_income" style="font-size: 18px; font-weight: bold; color: green;">₱0.00</div>
+        </div>
 
-            <div style="text-align: center; min-width: 120px;">
-                <small style="font-weight: bold; color: #555;">HALL INCOME</small>
-                <div id="hall_income" style="font-size: 18px; font-weight: bold; color: green;">₱0.00</div>
-            </div>
+        <div style="text-align: center; min-width: 120px;">
+            <small style="font-weight: bold; color: #555;">HALL INCOME</small>
+            <div id="hall_income" style="font-size: 18px; font-weight: bold; color: green;">₱0.00</div>
+        </div>
 
-            <div style="text-align: center; min-width: 120px;">
-                <small style="font-weight: bold; color: #555;">BEST SELLER</small>
-                <div id="best_seller" style="font-size: 18px; font-weight: bold; color: #007bff;">--</div>
-            </div>
+        <div style="text-align: center; min-width: 120px;">
+            <small style="font-weight: bold; color: #555;">BEST SELLER</small>
+            <div id="best_seller" style="font-size: 18px; font-weight: bold; color: #007bff;">--</div>
+        </div>
 
-            <div style="text-align: center; min-width: 120px;">
-                <small style="font-weight: bold; color: #555;">PAYMENT STATUS</small>
-                <div id="payment_summary" style="font-size: 18px; font-weight: bold; color: #dc3545;">Unpaid: 0</div>
-            </div>
+        <div style="text-align: center; min-width: 180px;">
+            <small style="font-weight: bold; color: #555;">PAYMENT STATUS</small>
+            <div id="payment_summary" style="font-size: 18px; font-weight: bold; color: #dc3545;">Paid: 0 | Partial: 0 | Unpaid: 0</div>
         </div>
     </div>
+</div>
 
     <div class="btn-row" style="display: flex; align-items: center; gap: 10px; margin: 10px 0;">
         <button class="btn btn-primary" onclick="loadRooms();">ROOMS</button>

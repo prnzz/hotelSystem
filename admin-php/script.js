@@ -117,7 +117,6 @@ function viewCustomerDetails(customerId, source) {
     });
 }
 
-// Function to fetch the JSON data we built earlier
 function updateDashboardStats() {
     fetch('php/dashboard_stats.php')
         .then(response => response.json())
@@ -126,7 +125,17 @@ function updateDashboardStats() {
             document.getElementById('room_income').innerText = data.room_income;
             document.getElementById('hall_income').innerText = data.hall_income;
             document.getElementById('best_seller').innerText = data.best_seller;
-            document.getElementById('payment_summary').innerText = data.payment_summary;
+
+            var paymentSummary = document.getElementById('payment_summary');
+            paymentSummary.innerText = data.payment_summary;
+
+            if (data.payment_summary.includes("Unpaid: 0") && data.payment_summary.includes("Partial: 0")) {
+                paymentSummary.style.color = "green";
+            } else if (data.payment_summary.includes("Partial:")) {
+                paymentSummary.style.color = "#ffc107";
+            } else {
+                paymentSummary.style.color = "#dc3545";
+            }
         })
         .catch(error => console.error('Error loading stats:', error));
 }
