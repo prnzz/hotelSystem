@@ -43,14 +43,13 @@ if ($res_id) {
                    oninput="calculateChange()" required>
         </div>
 
-        <!-- 💵 CHANGE DISPLAY -->
+
         <div style="margin-bottom: 10px;">
             <label>Change (Sukli):</label><br>
             <input type="text" id="change_display" value="0.00" readonly
                    style="width: 100%; padding: 8px; background: #f1f1f1;">
         </div>
 
-        <!-- ❗ VALIDATION MESSAGE -->
         <div id="payment_error" style="color: red; margin-bottom: 10px;"></div>
 
         <div style="margin-bottom: 15px;">

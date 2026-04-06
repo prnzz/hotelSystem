@@ -22,7 +22,9 @@ $db = mysqli_connect($host, $username, $password, $database);
             <input type="text" id="guest_name" placeholder="Enter Guest Name" required> <br><br>
             <input type="text" id="contact" placeholder="Enter Contact Number" required> <br><br>
             
+            <label for="check_in_date">Check-in Date:</label>
             <input type="date" id="check_in_date" name="check_in" required>
+            <label for="expected_check_out">Expected Check-out Date:</label>
             <input type="date" id="expected_check_out" name="check_out" required> <br><br>
 
             <h4>Unit Details</h4>
