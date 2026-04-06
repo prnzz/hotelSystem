@@ -226,14 +226,18 @@ function confirmReservation(reservationId) {
               "&action=confirm")
         .then(response => response.text())
         .then(data => {
-            if (data.trim() === "success") {
+            if (data() === "success") {
                 alert("Reservation Confirmed!");
                 loadReservation(); 
             } else {
                 alert("Error: " + data);
             }
         });
-    }
+    }else{
+        if (alert("Reservation is not yet Paid! Please proceed to payment.")) {
+            openPayment(reservationId);
+        }
+}
 }
 
 function cancelReservation(reservationId, unitId) {
