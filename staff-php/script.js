@@ -256,6 +256,30 @@ function cancelReservation(reservationId, unitId) {
     }
 }
 
+function calculateChange() {
+    const amountToPay = parseFloat(document.getElementById("amount_to_pay").value) || 0;
+    const amountPaid = parseFloat(document.getElementById("amount_paid").value) || 0;
+
+    const change = amountPaid - amountToPay;
+
+    const changeDisplay = document.getElementById("change_display");
+    const errorDiv = document.getElementById("payment_error");
+
+    if (amountPaid <= 0) {
+        changeDisplay.value = "0.00";
+        errorDiv.textContent = "";
+        return;
+    }
+
+    if (amountPaid < amountToPay) {
+        changeDisplay.value = "0.00";
+        errorDiv.textContent = "Insufficient payment.";
+    } else {
+        changeDisplay.value = change.toFixed(2);
+        errorDiv.textContent = "";
+    }
+}
+
 function submitPayment() {
     var res_id = document.getElementById('res_id');
     var amount_to_pay = document.getElementById('amount_to_pay');
@@ -264,26 +288,50 @@ function submitPayment() {
 
     var totalBill = parseFloat(amount_to_pay.value) || 0;
     var paid = parseFloat(amount_paid.value) || 0;
+    var change = paid - totalBill;
+
+    // ❌ empty or invalid input
+    if (!paid || paid <= 0) {
+        alert("Please enter a valid amount.");
+        return;
+    }
 
     if (paid < totalBill) {
         alert("Error: Amount paid is less than the total bill.");
-    } else {
-        if (confirm("Confirm payment of ₱" + paid.toFixed(2) + "?")) {
-            fetch("php/save_payment.php?res_id=" + res_id.value + 
-                  "&amount_paid=" + amount_paid.value + 
-                  "&method=" + payment_method.value)
-            .then(response => response.text())
-            .then(result => {
-                if (result.trim() === "success") {
-                    alert("Payment Successful! Confirm the reservation to check in the guest.");
-                    loadReservation(); 
-                } else {
-                    alert("Error: " + result);
-                }
-            });
-        }
+        return;
+    }
+
+    if (confirm(
+        "Payment Summary:\n\n" +
+        "Total: ₱" + totalBill.toFixed(2) + "\n" +
+        "Paid: ₱" + paid.toFixed(2) + "\n" +
+        "Change: ₱" + change.toFixed(2) + "\n\n" +
+        "Proceed with transaction?"
+    )) {
+        fetch("php/save_payment.php?res_id=" + res_id.value + 
+              "&amount_paid=" + paid + 
+              "&method=" + payment_method.value)
+        .then(response => response.text())
+        .then(result => {
+            if (result.trim() === "success") {
+                alert("Payment Successful!\nChange: ₱" + change.toFixed(2));
+
+                // reset form (POS behavior)
+                document.getElementById("amount_paid").value = "";
+                document.getElementById("change_display").value = "0.00";
+
+                loadReservation(); 
+            } else {
+                alert("Error: " + result);
+            }
+        })
+        .catch(error => {
+            console.error(error);
+            alert("Server error.");
+        });
     }
 }
+
 function checkOut(resId, unitId) {
     if (confirm("Are you sure you want to check out this guest? The room status will be set to 'Maintenance'.")) {
         fetch("php/process_checkout.php?res_id=" + resId + "&unit_id=" + unitId)
