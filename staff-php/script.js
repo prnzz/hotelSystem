@@ -257,19 +257,19 @@ function cancelReservation(reservationId, unitId) {
 }
 
 function calculateChange() {
-    const amountToPayInput = document.getElementById("amount_to_pay");
-    const amountPaidInput = document.getElementById("amount_paid");
-    const changeDisplay = document.getElementById("change_display");
-    const errorDiv = document.getElementById("payment_error");
+    var amountToPayInput = document.getElementById("amount_to_pay");
+    var amountPaidInput = document.getElementById("amount_paid");
+    var changeDisplay = document.getElementById("change_display");
+    var errorDiv = document.getElementById("payment_error");
 
     if (!amountToPayInput || !amountPaidInput || !changeDisplay || !errorDiv) {
-        console.error("Missing required payment elements.");
+        console.log("Payment elements not found.");
         return;
     }
 
-    const amountToPay = parseFloat(amountToPayInput.value) || 0;
-    const amountPaid = parseFloat(amountPaidInput.value) || 0;
-    const change = amountPaid - amountToPay;
+    var amountToPay = parseFloat(amountToPayInput.value) || 0;
+    var amountPaid = parseFloat(amountPaidInput.value) || 0;
+    var change = amountPaid - amountToPay;
 
     if (amountPaid <= 0) {
         changeDisplay.value = "0.00";
@@ -285,6 +285,56 @@ function calculateChange() {
         errorDiv.textContent = "";
     }
 }
+
+function submitPayment() {
+    var res_id = document.getElementById('res_id');
+    var amount_to_pay = document.getElementById('amount_to_pay');
+    var amount_paid = document.getElementById('amount_paid');
+    var payment_method = document.getElementById('payment_method');
+
+    var totalBill = parseFloat(amount_to_pay.value) || 0;
+    var paid = parseFloat(amount_paid.value) || 0;
+    var change = paid - totalBill;
+
+    if (!paid || paid <= 0) {
+        alert("Please enter a valid amount.");
+        return;
+    }
+
+    if (paid < totalBill) {
+        alert("Error: Amount paid is less than the total bill.");
+        return;
+    }
+
+    if (confirm(
+        "Payment Summary:\n\n" +
+        "Total: ₱" + totalBill.toFixed(2) + "\n" +
+        "Paid: ₱" + paid.toFixed(2) + "\n" +
+        "Change: ₱" + change.toFixed(2) + "\n\n" +
+        "Proceed with transaction?"
+    )) {
+        fetch("php/save_payment.php?res_id=" + res_id.value + 
+              "&amount_paid=" + paid + 
+              "&method=" + payment_method.value)
+        .then(response => response.text())
+        .then(result => {
+            if (result.trim() === "success") {
+                alert("Payment Successful!\nChange: ₱" + change.toFixed(2));
+                loadReservation();
+            } else {
+                alert("Error: " + result);
+            }
+        })
+        .catch(error => {
+            console.error(error);
+            alert("Server error.");
+        });
+    }
+}
+
+/* make sure inline HTML can call them */
+window.calculateChange = calculateChange;
+window.submitPayment = submitPayment;
 
 function submitPayment() {
     var res_id = document.getElementById('res_id');
