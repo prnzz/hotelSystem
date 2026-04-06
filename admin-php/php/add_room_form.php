@@ -3,7 +3,6 @@ include('../../conn/connection.php');
 $db = mysqli_connect($host, $username, $password, $database);
 ?>
 <main style="text-align: center;">
-    <form id="addRoomForm">
         <button type="button" onclick="loadRooms()" style="float: left;">Back</button>
         <h2>Add New Room</h2>
         <br>
@@ -23,6 +22,12 @@ $db = mysqli_connect($host, $username, $password, $database);
             <?php } ?>
         </select><br><br>
 
+        <!-- 🔥 NEW INPUT MODE -->
+        <small>Or create new unit type:</small><br>
+        <input type="text" id="input_new_unit_type" placeholder="New Unit Type (e.g. Deluxe)"><br><br>
+
+        <input type="number" id="input_new_price_per_day" placeholder="Price per Day" step="0.01"><br><br>
+
         <label>Category</label><br>
         <select id="new_category">
             <option value="0">-- Select Category --</option>
@@ -36,5 +41,4 @@ $db = mysqli_connect($host, $username, $password, $database);
         </select><br><br>
 
         <button type="button" id="newRoomBtn" onclick="saveRoomData(this.id)">Save Room</button>
-    </form>
 </main>
