@@ -231,7 +231,7 @@ function confirmReservation(reservationId) {
                 loadReservation(); 
             } else if (data.trim() === "not_paid") {
                 alert("Cannot confirm reservation. Guest has not completed payment yet.");
-                openPayment(reservationId);
+                loadReservation();
             } else {
                 alert("Error: " + data);
             }
