@@ -27,7 +27,8 @@
                         <?php
                         include('../../../conn/connection.php');
                         $db = mysqli_connect($host, $username, $password, $database);
-                       $customerList = mysqli_query($db, "SELECT * FROM `check_in_out_master` WHERE unit_type = 'Standard' AND status = 'Checked-Out'");
+                       $counter = 0;
+                        $customerList = mysqli_query($db, "SELECT * FROM `check_in_out_master` WHERE unit_type = 'Standard' AND status = 'Checked-Out'");
                         while($row = mysqli_fetch_array($customerList)){
                         $counter++;
                         ?>
