@@ -2,6 +2,7 @@
 include('../../conn/connection.php');
 $db = mysqli_connect($host, $username, $password, $database);
 
+
 $u_id = isset($_GET['unit_id']) ? mysqli_real_escape_string($db, $_GET['unit_id']) : null;
 
 if ($u_id) {
@@ -19,11 +20,10 @@ if ($u_id) {
         <br>
 
         <label>Unit Name / Number</label><br>
-        <input type="text" id="new_unit_name" value="<?php echo htmlspecialchars($row['unit_name']); ?>" placeholder="e.g. Room 101"><br><br>
+        <input type="text" id="new_unit_name" value="<?php echo $row['unit_name']; ?>" placeholder="e.g. Room 101"><br><br>
 
         <label>Unit Type</label><br>
         <select id="new_unit_type">
-            <option value="0">-- Select Type --</option>
             <?php 
             $types = mysqli_query($db, "SELECT * FROM unit_types");
             while($t = mysqli_fetch_array($types)) { 
@@ -42,7 +42,6 @@ if ($u_id) {
 
         <label>Category</label><br>
         <select id="new_category">
-            <option value="0">-- Select Category --</option>
             <?php 
             $cats = mysqli_query($db, "SELECT * FROM categories");
             while($c = mysqli_fetch_array($cats)) { 
