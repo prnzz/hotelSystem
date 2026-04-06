@@ -8,17 +8,27 @@ if (isset($_GET['action'])) {
 
     if ($action == 'confirm') {
 
-        $checkPayment = mysqli_query($db, "SELECT * FROM payments WHERE reservation_id = '$res_id'");
+        $checkPaymentStatus = mysqli_query($db, "SELECT payment_status, unit_id FROM reservations WHERE reservation_id = '$res_id'");
+        $paymentRow = mysqli_fetch_array($checkPaymentStatus);
 
-        if (mysqli_num_rows($checkPayment) > 0) {
-            $query = "UPDATE reservations SET status = 'Checked-In' WHERE reservation_id = '$res_id'";
-            if (mysqli_query($db, $query)) {
-                echo "success";
+        if ($paymentRow) {
+            $payment_status = $paymentRow['payment_status'];
+            $unit_id = $paymentRow['unit_id'];
+
+            if ($payment_status == 'Paid') {
+                $query = "UPDATE reservations SET status = 'Checked-In' WHERE reservation_id = '$res_id'";
+                $query2 = "UPDATE units SET status = 'Occupied' WHERE unit_id = '$unit_id'";
+
+                if (mysqli_query($db, $query) && mysqli_query($db, $query2)) {
+                    echo "success";
+                } else {
+                    echo "Error: " . mysqli_error($db);
+                }
             } else {
-                echo "Error: " . mysqli_error($db);
+                echo "not_paid";
             }
         } else {
-            echo "not_paid";
+            echo "Reservation not found";
         }
     } 
 

@@ -18,6 +18,7 @@
                         <th>UNIT PRICE</th>
                         <th>STAY DAYS</th>
                         <th>TOTAL AMOUNT</th>
+                        <th>PAYMENT</th>
                         <th>STATUS</th>
                         <th>ACTION</th>
                     </tr>
@@ -45,6 +46,17 @@
                         <td>₱<?php echo number_format($row['price_per_day'], 2); ?></td>
                         <td><?php echo $row['duration_days']; ?></td>
                         <td><strong>₱<?php echo number_format($row['total_bill'], 2); ?></strong></td>
+
+                        <td>
+                            <span class="badge <?php 
+                                if($row['payment_status'] == 'Paid') echo 'badge-success'; 
+                                else if($row['payment_status'] == 'Partial') echo 'badge-warning'; 
+                                else echo 'badge-danger'; 
+                            ?>">
+                                <?php echo $row['payment_status']; ?>
+                            </span>
+                        </td>
+
                         <td>
                             <span class="badge <?php 
                                 if($row['status'] == 'Reserved') echo 'badge-warning'; 
