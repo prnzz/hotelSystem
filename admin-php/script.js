@@ -129,8 +129,8 @@ function updateDashboardStats() {
             var paymentSummary = document.getElementById('payment_summary');
             paymentSummary.innerText = data.payment_summary;
 
-            if (data.payment_summary.includes("Unpaid: 0") && data.payment_summary.includes("Partial: 0")) {
-                paymentSummary.style.color = "green";
+            if (data.payment_summary.includes("Unpaid: 0")) {
+                paymentSummary.style.color = "#35dc59";
             } else {
                 paymentSummary.style.color = "#dc3545";
             }
