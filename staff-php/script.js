@@ -222,6 +222,7 @@ function initReservationLogic() {
 
 function confirmReservation(reservationId) {
     if (confirm("Are you sure you want to confirm this reservation?")) {
+            if (submitPayment(reservationId) == "success") {
         fetch("php/update_reservation.php?reservation_id=" + reservationId + 
               "&action=confirm")
         .then(response => response.text())
@@ -233,11 +234,13 @@ function confirmReservation(reservationId) {
                 alert("Error: " + data);
             }
         });
-    }else{
-        if (alert("Reservation is not yet Paid! Please proceed to payment.")) {
-            openPayment(reservationId);
+        } else {
+            alert("Payment failed. Reservation not confirmed.");
+            openPayment(reservationId); 
         }
-}
+    }else{
+            alert("Reservation confirmation cancelled.");
+    }
 }
 
 function cancelReservation(reservationId, unitId) {
