@@ -7,11 +7,18 @@ if (isset($_GET['action'])) {
     $action = $_GET['action'];
 
     if ($action == 'confirm') {
-        $query = "UPDATE reservations SET status = 'Checked-In' WHERE reservation_id = '$res_id'";
-        if (mysqli_query($db, $query)) {
-            echo "success";
+
+        $checkPayment = mysqli_query($db, "SELECT * FROM payments WHERE reservation_id = '$res_id'");
+
+        if (mysqli_num_rows($checkPayment) > 0) {
+            $query = "UPDATE reservations SET status = 'Checked-In' WHERE reservation_id = '$res_id'";
+            if (mysqli_query($db, $query)) {
+                echo "success";
+            } else {
+                echo "Error: " . mysqli_error($db);
+            }
         } else {
-            echo "Error: " . mysqli_error($db);
+            echo "not_paid";
         }
     } 
 

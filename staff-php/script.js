@@ -222,24 +222,20 @@ function initReservationLogic() {
 
 function confirmReservation(reservationId) {
     if (confirm("Are you sure you want to confirm this reservation?")) {
-            if (submitPayment(reservationId) == "success") {
         fetch("php/update_reservation.php?reservation_id=" + reservationId + 
               "&action=confirm")
         .then(response => response.text())
         .then(data => {
-            if (data() === "success") {
+            if (data.trim() === "success") {
                 alert("Reservation Confirmed!");
                 loadReservation(); 
+            } else if (data.trim() === "not_paid") {
+                alert("Cannot confirm reservation. Guest has not completed payment yet.");
+                openPayment(reservationId);
             } else {
                 alert("Error: " + data);
             }
         });
-        } else {
-            alert("Payment failed. Reservation not confirmed.");
-            openPayment(reservationId); 
-        }
-    }else{
-            alert("Reservation confirmation cancelled.");
     }
 }
 
@@ -279,7 +275,7 @@ function submitPayment() {
             .then(response => response.text())
             .then(result => {
                 if (result.trim() === "success") {
-                    alert("Payment Successful!");
+                    alert("Payment Successful! Confirm the reservation to check in the guest.");
                     loadReservation(); 
                 } else {
                     alert("Error: " + result);
