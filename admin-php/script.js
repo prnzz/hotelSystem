@@ -131,8 +131,6 @@ function updateDashboardStats() {
 
             if (data.payment_summary.includes("Unpaid: 0") && data.payment_summary.includes("Partial: 0")) {
                 paymentSummary.style.color = "green";
-            } else if (data.payment_summary.includes("Partial:")) {
-                paymentSummary.style.color = "#ffc107";
             } else {
                 paymentSummary.style.color = "#dc3545";
             }

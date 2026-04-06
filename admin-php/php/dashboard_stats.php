@@ -62,15 +62,13 @@ $best_name = $best_data['category_name'] ?? "--";
 $payment_status = $conn->query("
     SELECT 
         COALESCE(SUM(CASE WHEN r.payment_status = 'Paid' THEN 1 ELSE 0 END), 0) as paid_count,
-        COALESCE(SUM(CASE WHEN r.payment_status = 'Unpaid' THEN 1 ELSE 0 END), 0) as unpaid_count,
-        COALESCE(SUM(CASE WHEN r.payment_status = 'Partial' THEN 1 ELSE 0 END), 0) as partial_count
+        COALESCE(SUM(CASE WHEN r.payment_status = 'Unpaid' THEN 1 ELSE 0 END), 0) as unpaid_count
     FROM reservations r
     WHERE r.status != 'Cancelled'
 ");
 $pay_data = $payment_status ? $payment_status->fetch_assoc() : [];
 $paid = $pay_data['paid_count'] ?? 0;
 $unpaid = $pay_data['unpaid_count'] ?? 0;
-$partial = $pay_data['partial_count'] ?? 0;
 
 // --- OUTPUT JSON ---
 echo json_encode([
@@ -78,7 +76,7 @@ echo json_encode([
     "room_income"     => "₱" . number_format($room_total, 2),
     "hall_income"     => "₱" . number_format($hall_total, 2),
     "best_seller"     => $best_name,
-    "payment_summary" => "Paid: $paid | Partial: $partial | Unpaid: $unpaid"
+    "payment_summary" => "Paid: $paid | Unpaid: $unpaid"
 ]);
 
 $conn->close();
