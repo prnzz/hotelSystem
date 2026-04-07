@@ -161,6 +161,8 @@ function saveReservation() {
     var guest_name = document.getElementById("guest_name");
     var contact = document.getElementById("contact");
     var unit_id = document.getElementById("unit_id");
+    var check_in_time = document.getElementById("check_in_time");
+    var check_out_time = document.getElementById("check_out_time");
     var check_in_date = document.getElementById("check_in_date");
     var expected_check_out = document.getElementById("expected_check_out");
     var duration = document.getElementById("duration");
@@ -173,6 +175,8 @@ function saveReservation() {
               "&contact=" + contact.value + 
               "&unit_id=" + unit_id.value + 
               "&check_in_date=" + check_in_date.value + 
+              "&check_in_time=" + check_in_time.value + 
+              "&check_out_time=" + check_out_time.value + 
               "&expected_check_out=" + expected_check_out.value + 
               "&duration_days=" + duration.value + 
               "&total_bill=" + total.value)
