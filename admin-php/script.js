@@ -247,8 +247,6 @@ function saveRoomData(btnId) {
     var name = document.getElementById('new_unit_name').value;
     var type = document.getElementById('new_unit_type').value;
     var category = document.getElementById('new_category').value;
-    var new_unit_type = document.getElementById('input_new_unit_type').value;
-    var new_price_per_day = document.getElementById('input_new_price_per_day').value;
 
     if (name == "" || category == "0") {
         alert("Please fill in all fields.");
@@ -260,17 +258,11 @@ function saveRoomData(btnId) {
         return;
     }
 
-    if (new_unit_type != "" && new_price_per_day == "") {
-        alert("Please enter the price per day for the new unit type.");
-        return;
-    }
 
     if (confirm("Are you sure you want to add this room?")) {
-        fetch("php/save_room.php?name=" + encodeURIComponent(name) + 
-              "&type=" + encodeURIComponent(type) + 
-              "&category=" + encodeURIComponent(category) +
-              "&new_unit_type=" + encodeURIComponent(new_unit_type) +
-              "&new_price_per_day=" + encodeURIComponent(new_price_per_day))
+        fetch("php/save_room.php?name=" + name + 
+              "&type=" + type + 
+              "&category=" + category)
         .then(response => response.text())
         .then(result => {
             if (result.trim() === "success") {
