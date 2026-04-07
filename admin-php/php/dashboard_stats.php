@@ -43,14 +43,14 @@ $hall_total = $inc_data['hall_income'] ?? 0;
 // Finds the category that generates the most bookings and revenue
 $best_selling = $conn->query("
     SELECT 
-        cat.category_name,
+        ut.unit_type_name,
         COUNT(r.reservation_id) as freq,
         COALESCE(SUM(r.total_bill), 0) as rev
     FROM reservations r
     JOIN units u ON r.unit_id = u.unit_id
-    JOIN categories cat ON u.category_id = cat.category_id
+    JOIN unit_types ut ON u.unit_type_id = ut.unit_type_id
     WHERE r.status != 'Cancelled'
-    GROUP BY cat.category_id, cat.category_name
+    GROUP BY ut.unit_type_id, ut.unit_type_name
     ORDER BY freq DESC, rev DESC
     LIMIT 1
 ");

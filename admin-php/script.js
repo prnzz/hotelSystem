@@ -108,6 +108,34 @@
         document.getElementById("Tblcontent").innerHTML = data; 
         });
     }
+    function roomIncome(){
+        fetch('php/roomIncome.php')
+        .then(response => response.text())
+        .then(data => {
+            document.getElementById("Tblcontent").innerHTML = data;
+        });
+    }
+    function hallIncome(){
+        fetch('php/hallIncome.php')
+        .then(response => response.text())
+        .then(data => {
+            document.getElementById("Tblcontent").innerHTML = data;
+        });
+    }
+    function dailyOccopancy(){
+        fetch('php/dailyOcc.php')
+        .then(response => response.text())
+        .then(data => {
+            document.getElementById("Tblcontent").innerHTML = data;
+        });
+    }
+    function paymentStatus() {
+        fetch('php/paymentStatus.php')
+        .then(response => response.text())
+        .then(data => {
+            document.getElementById("Tblcontent").innerHTML = data;
+        });
+    }
     
 function viewCustomerDetails(customerId, source) {
     fetch(`php/view_customer.php?id=${customerId}&source=${source}`)
@@ -344,3 +372,4 @@ function updateRoomData(unit_id) {
 function reportPDF() {
     window.open("php/generate_report.php", "_blank");
 }
+

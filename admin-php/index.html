@@ -15,27 +15,27 @@
     <div class="daily-sales" style="display: flex; justify-content: space-around; padding: 15px; background: #f4f4f4; border: 1px solid #ccc; width: 100%; flex-wrap: wrap; gap: 10px;">
         
         <div style="text-align: center; min-width: 120px;">
-            <button><small style="font-weight: bold; color: #555;">DAILY OCCUPANCY</small></button>
+            <button onclick="dailyOccopancy()"><small style="font-weight: bold; color: #555;">DAILY OCCUPANCY</small></button>
             <div id="occ_data" style="font-size: 18px; font-weight: bold;">Rooms: 0 | Halls: 0</div>
         </div>
 
         <div style="text-align: center; min-width: 120px;">
-            <button><small style="font-weight: bold; color: #555;">ROOM INCOME</small></button>
+            <button onclick="roomIncome()"><small style="font-weight: bold; color: #555;">ROOM INCOME</small></button>
             <div id="room_income" style="font-size: 18px; font-weight: bold; color: green;">₱0.00</div>
         </div>
 
         <div style="text-align: center; min-width: 120px;">
-            <button><small style="font-weight: bold; color: #555;">HALL INCOME</small></button>
+            <button onclick="hallIncome()"><small style="font-weight: bold; color: #555;">HALL INCOME</small></button>
             <div id="hall_income" style="font-size: 18px; font-weight: bold; color: green;">₱0.00</div>
         </div>
 
         <div style="text-align: center; min-width: 120px;">
-            <button><small style="font-weight: bold; color: #555;">BEST SELLER</small></button>
+            <small style="font-weight: bold; color: #555;">BEST SELLER</small>
             <div id="best_seller" style="font-size: 18px; font-weight: bold; color: #007bff;">--</div>
         </div>
 
         <div style="text-align: center; min-width: 180px;">
-            <button><small style="font-weight: bold; color: #555;">PAYMENT STATUS</small></button>
+            <button onclick="paymentStatus()"><small style="font-weight: bold; color: #555;">PAYMENT STATUS</small></button>
             <div id="payment_summary" style="font-size: 18px; font-weight: bold; color: #dc3545;">Paid: 0 | Unpaid: 0</div>
         </div>
     </div>
@@ -62,6 +62,15 @@
     <script src="script.js"></script> 
     <script>
         verifylog();
+
+        function backToDashboard() {
+            fetch('index.html')
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('Tblcontent').innerHTML = data;
+            });
+        }
+
     </script>
 </body>
 </html>
