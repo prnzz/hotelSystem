@@ -136,6 +136,13 @@
             document.getElementById("Tblcontent").innerHTML = data;
         });
     }
+    function bestSeller() {
+        fetch('php/bestSeller.php')
+        .then(response => response.text())
+        .then(data => {
+            document.getElementById("Tblcontent").innerHTML = data;
+        });
+    }
     
 function viewCustomerDetails(customerId, source) {
     fetch(`php/view_customer.php?id=${customerId}&source=${source}`)
