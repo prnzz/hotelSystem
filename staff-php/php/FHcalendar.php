@@ -73,6 +73,9 @@ while ($row = $result->fetch_assoc()) {
 ?>
 
 <div class="calendar-container">
+    <div class="ledger">
+        <p>Green = Checked-In, Yellow = Reserved</p>
+    </div>
     <div class="calendar-header">
         <div class="header-left">
             <button class="nav-btn" onclick="functionHallCalendar(<?php echo $prevMonth; ?>, <?php echo $prevYear; ?>)">&laquo;</button>
