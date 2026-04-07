@@ -1,5 +1,5 @@
 <?php
-include('../../conn/connection.php');
+include('../conn/connection.php');
 $dbconn = mysqli_connect($host, $username, $password, $dbname);
 
 if (!$dbconn) {
@@ -19,6 +19,7 @@ $query = mysqli_query($dbconn, "
         r.expected_check_out,
         r.duration_days,
         r.total_bill,
+        r.payment_status,
         p.amount,
         p.payment_method,
         p.payment_date,
@@ -116,9 +117,11 @@ $total_sales = 0;
             <th>Check In</th>
             <th>Check Out</th>
             <th>Duration</th>
-            <th>Amount</th>
+            <th>Total Bill</th>
+            <th>Amount Paid</th>
             <th>Method</th>
-            <th>Status</th>
+            <th>Reservation Status</th>
+            <th>Payment Status</th>
         </tr>
 
         <?php
@@ -129,7 +132,7 @@ $total_sales = 0;
         ?>
         <tr>
             <td><?php echo $count; ?></td>
-            <td><?php echo date("Y-m-d", strtotime($row['payment_date'])); ?></td>
+            <td><?php echo date("Y-m-d h:i A", strtotime($row['payment_date'])); ?></td>
             <td><?php echo htmlspecialchars($row['guest_name']); ?></td>
             <td><?php echo htmlspecialchars($row['contact']); ?></td>
             <td><?php echo htmlspecialchars($row['unit_name']); ?></td>
@@ -138,9 +141,11 @@ $total_sales = 0;
             <td><?php echo htmlspecialchars($row['check_in_date']); ?></td>
             <td><?php echo htmlspecialchars($row['expected_check_out']); ?></td>
             <td><?php echo htmlspecialchars($row['duration_days']); ?></td>
+            <td>₱<?php echo number_format($row['total_bill'], 2); ?></td>
             <td>₱<?php echo number_format($row['amount'], 2); ?></td>
             <td><?php echo htmlspecialchars($row['payment_method']); ?></td>
             <td><?php echo htmlspecialchars($row['status']); ?></td>
+            <td><?php echo htmlspecialchars($row['payment_status']); ?></td>
         </tr>
         <?php } ?>
     </table>
