@@ -47,7 +47,7 @@
                             <?php echo $row['expected_check_out']; ?> || 
                             <?php echo date("h:i A", strtotime($row['check_out_time'])); ?>
                         </td>
-                        <td><?php echo $row['unit_name']; ?></td>
+                        <td><?php echo $row['unit_name']; ?> | <?php echo $row['floor']; ?></td>
                         <td><?php echo $row['unit_type_name']; ?></td>
                         <td>₱<?php echo number_format($row['price_per_day'], 2); ?></td>
                         <td><?php echo $row['duration_days']; ?></td>
