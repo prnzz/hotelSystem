@@ -1,6 +1,6 @@
 <?php
 include('../../conn/connection.php');
-$dbconn = mysqli_connect($host, $username, $password, $dbname);
+$dbconn = mysqli_connect($host, $username, $password, $database);
 
 if (!$dbconn) {
     die("Database connection failed: " . mysqli_connect_error());
