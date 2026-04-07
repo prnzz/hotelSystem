@@ -338,3 +338,7 @@ function updateRoomData(unit_id) {
         });
     }
 }
+
+function reportPDF() {
+    window.open("php/generate_report.php", "_blank");
+}
