@@ -35,8 +35,6 @@ if ($u_id) {
             <?php } ?>
         </select><br><br>
 
-        <small>Or create new unit type:</small><br>
-        <input type="text" id="input_new_unit_type" placeholder="New Unit Type (e.g. Deluxe)"><br><br>
 
         <input type="number" id="input_new_price_per_day" value="<?php echo $row['price_per_day']; ?>" placeholder="Price per Day" step="0.01"><br><br>
 
