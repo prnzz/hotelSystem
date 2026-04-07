@@ -11,8 +11,8 @@
                         <th>#</th>
                         <th>GUEST NAME</th>
                         <th>CONTACT</th>
-                        <th>CHECK-IN</th>
-                        <th>CHECK-OUT</th>
+                        <th>CHECK-IN || CHECK-IN TIME</th>
+                        <th>CHECK-OUT || CHECK-OUT TIME</th>
                         <th>ROOM NUMBER / FLOOR</th>
                         <th>ROOM TYPE</th>
                         <th>ROOM PRICE</th>
