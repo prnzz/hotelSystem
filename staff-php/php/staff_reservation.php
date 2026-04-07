@@ -29,7 +29,7 @@
                     include('../../conn/connection.php');
                     $db = mysqli_connect($host, $username, $password, $database);
                     $customerList = mysqli_query($db, "SELECT * FROM `current_reservation_in_customer` 
-                                                    WHERE status = 'Reserved'");
+                                                    WHERE status = 'Pending'");
                     $counter = 0;
                     
                     while($row = mysqli_fetch_array($customerList)){
