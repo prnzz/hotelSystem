@@ -54,8 +54,10 @@ $best_selling = $conn->query("
     ORDER BY freq DESC, rev DESC
     LIMIT 1
 ");
+
 $best_data = $best_selling ? $best_selling->fetch_assoc() : [];
-$best_name = $best_data['category_name'] ?? "--";
+
+$best_name = $best_data['unit_type_name'] ?? "--";
 
 // --- 4. PAYMENTS (Paid vs Unpaid) ---
 // Uses reservations.payment_status
