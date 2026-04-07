@@ -11,15 +11,16 @@
                 <thead>
                     <tr>
                         <th>ID</th>
-                        <th>CUSTOMER NAME</th>
+                        <th>CUSTOMER NAME</th>      
                         <th>CONTACT</th>
-                        <th>CHECK-IN</th>
-                        <th>CHECK-OUT</th>
+                        <th>CHECK-IN || CHECK-IN TIME</th>
+                        <th>CHECK-OUT || CHECK-OUT TIME</th>
                         <th>DURATION DAYS</th>
-                        <th>UNIT NAME</th>
-                        <th>UNIT TYPE</th>
+                        <th>ROOM NUMBER | FLOOR</th>
+                        <th>ROOM TYPE</th>
                         <th>TOTAL AMOUNT</th>
                         <th>STATUS</th>
+                        <th>PAYMENT</th>
                         <th>ACTION</th>
                     </tr>
                 </thead>
@@ -36,8 +37,14 @@
                             <td><?php echo $counter ?></td>
                             <td><?php echo ($row['guest_name']) ?></td>
                             <td><?php echo ($row['contact']) ?></td>
-                            <td><?php echo ($row['check_in']) ?></td>
-                            <td><?php echo ($row['check_out']) ?></td>
+                            <td>
+                                <?php echo $row['check_in']; ?> || 
+                                <?php echo date("h:i A", strtotime($row['check_in_time'])); ?>
+                            </td>
+                            <td>
+                                <?php echo $row['check_out']; ?> || 
+                                <?php echo date("h:i A", strtotime($row['check_out_time'])); ?>
+                            </td>
                             <td><?php echo ($row['duration_days']) ?></td>
                             <td><?php echo ($row['unit']) ?></td>                     
                             <td><?php echo ($row['unit_type']) ?></td>
