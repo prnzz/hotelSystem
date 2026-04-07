@@ -11,7 +11,7 @@
                 <tr>
                     <th>UNIT TYPE</th>
                     <th>CATEGORY</th>
-                    <th>ROOM NUMBER / FLOOR</th>
+                    <th>ROOM NUMBER | FLOOR</th>
                     <th>ROOM PRICE</th>
                     <th>STATUS</th>
                     <th>ACTION</th>
@@ -27,7 +27,7 @@
                     <tr>
                         <td><?php echo $row['unit_type_name']; ?></td>
                         <td><?php echo $row['category_name']; ?></td>
-                        <td><?php echo $row['unit_name']; ?></td>
+                        <td><?php echo $row['unit_name']; ?> | <?php echo $row['floor']; ?></td>
                         <td>₱<?php echo number_format($row['price_per_day'], 2); ?></td>
                         <td>
                             <span <?php echo ($row['status'] == 'Maintenance') ?>>
