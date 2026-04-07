@@ -22,12 +22,6 @@ $db = mysqli_connect($host, $username, $password, $database);
             <?php } ?>
         </select><br><br>
 
-        <!-- 🔥 NEW INPUT MODE -->
-        <small>Or create new unit type:</small><br>
-        <input type="text" id="input_new_unit_type" placeholder="New Unit Type (e.g. Deluxe)"><br><br>
-
-        <input type="number" id="input_new_price_per_day" placeholder="Price per Day" step="0.01"><br><br>
-
         <label>Category</label><br>
         <select id="new_category">
             <option value="0">-- Select Category --</option>
