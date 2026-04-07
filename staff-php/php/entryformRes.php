@@ -42,8 +42,8 @@ $db = mysqli_connect($host, $username, $password, $database);
                 $unit_query = mysqli_query($db, "SELECT * FROM `roomlist` WHERE status = 'Available'");
                 while($res = mysqli_fetch_array($unit_query)) { 
                 ?>
-                    <option value="<?php echo $res['unit_id']; ?>" data-price="<?php echo $res['price_per_day']; ?>">
-                        <?php echo $res['unit_name']; ?> - <?php echo $res['unit_type_name']; ?>
+                    <option value="<?php echo $res['unit_id']; ?>" data-price="<?php echo $res['price_per_day']; ?>" data-floor="<?php echo $res['floor']; ?>">
+                        <?php echo $res['unit_name']; ?> | <?php echo $res['floor']; ?> - <?php echo $res['unit_type_name']; ?>
                     </option>
                 <?php } ?>
             </select> 

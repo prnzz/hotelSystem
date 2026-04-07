@@ -46,7 +46,7 @@
                                 <?php echo date("h:i A", strtotime($row['check_out_time'])); ?>
                             </td>
                             <td><?php echo ($row['duration_days']) ?></td>
-                            <td><?php echo $row['unit_name']; ?> | <?php echo $row['floor']; ?></td>                    
+                            <td><?php echo $row['unit']; ?> | <?php echo $row['floor']; ?></td>                  
                             <td><?php echo ($row['unit_type']) ?></td>
                             <td><?php echo ($row['total_amount']) ?></td>
                             <td><?php echo ($row['status']) ?></td>
