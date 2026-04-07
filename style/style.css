@@ -13,7 +13,8 @@ body {
     z-index: 1000;
 }
 
-.content-holder {      
+.content-holder { 
+    width: 90%;     
     margin: 0 auto;          
     display: flex;
     flex-direction: column;   
