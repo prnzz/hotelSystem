@@ -51,20 +51,29 @@
                                 <td><?php echo ($row['total_amount']) ?></td>
                                 <td><?php echo ($row['status']) ?></td>
                                 <td>
-                                <button type="button" class="btn btn-secondary" 
-                                    onclick="editReservation('<?php echo $row['reservation_id']; ?>')">
-                                    Edit
-                                </button>
-                                
-                                <button type="button" class="btn btn-secondary" 
-                                    onclick="deleteReservation('<?php echo $row['reservation_id']; ?>')">
-                                    Delete
-                                </button>
-                                
-                                <button type="button" class="btn btn-secondary" 
-                                    onclick="viewCustomerDetails('<?php echo $row['customer_id']; ?>', 'checkout')">
-                                    View Details
-                                </button>
+                                    <span class="badge <?php 
+                                        if($row['payment_status'] == 'Paid') echo 'badge-success'; 
+                                        else if($row['payment_status'] == 'Partial') echo 'badge-warning'; 
+                                        else echo 'badge-danger'; 
+                                    ?>">
+                                        <?php echo $row['payment_status']; ?>
+                                    </span>
+                                </td>
+                                <td>
+                                    <button type="button" class="btn btn-secondary" 
+                                        onclick="editReservation('<?php echo $row['reservation_id']; ?>')">
+                                        Edit
+                                    </button>
+                                    
+                                    <button type="button" class="btn btn-secondary" 
+                                        onclick="deleteReservation('<?php echo $row['reservation_id']; ?>')">
+                                        Delete
+                                    </button>
+                                    
+                                    <button type="button" class="btn btn-secondary" 
+                                        onclick="viewCustomerDetails('<?php echo $row['customer_id']; ?>', 'checkout')">
+                                        View Details
+                                    </button>
                                 </td>
                             </tr>
                             <?php

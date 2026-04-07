@@ -50,6 +50,15 @@
                             <td><?php echo ($row['total_amount']) ?></td>
                             <td><?php echo ($row['status']) ?></td>
                             <td>
+                                <span class="badge <?php 
+                                    if($row['payment_status'] == 'Paid') echo 'badge-success'; 
+                                    else if($row['payment_status'] == 'Partial') echo 'badge-warning'; 
+                                    else echo 'badge-danger'; 
+                                ?>">
+                                    <?php echo $row['payment_status']; ?>
+                                </span>
+                            </td>
+                            <td>
                                 <button type="button" class="btn btn-secondary" 
                                     onclick="editReservation('<?php echo $row['reservation_id']; ?>')">
                                     Edit
