@@ -11,8 +11,8 @@
                 <tr>
                     <th>UNIT TYPE</th>
                     <th>CATEGORY</th>
-                    <th>UNIT # NAME</th>
-                    <th>UNIT PRICE</th>
+                    <th>ROOM NUMBER / FLOOR</th>
+                    <th>ROOM PRICE</th>
                     <th>STATUS</th>
                     <th>ACTION</th>
                 </tr>

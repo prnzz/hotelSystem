@@ -13,9 +13,9 @@
                         <th>CONTACT</th>
                         <th>CHECK-IN</th>
                         <th>CHECK-OUT</th>
-                        <th>UNIT</th>
-                        <th>UNIT TYPE</th>
-                        <th>UNIT PRICE</th>
+                        <th>ROOM NUMBER / FLOOR</th>
+                        <th>ROOM TYPE</th>
+                        <th>ROOM PRICE</th>
                         <th>STAY DAYS</th>
                         <th>TOTAL AMOUNT</th>
                         <th>PAYMENT</th>
@@ -28,8 +28,7 @@
                     <?php
                     include('../../conn/connection.php');
                     $db = mysqli_connect($host, $username, $password, $database);
-                    $customerList = mysqli_query($db, "SELECT * FROM `current_reservation_in_customer` 
-                                                    WHERE status = 'Pending'");
+                    $customerList = mysqli_query($db, "SELECT * FROM `current_reservation_in_customer` WHERE status = 'Pending'");
                     $counter = 0;
                     
                     while($row = mysqli_fetch_array($customerList)){
@@ -39,8 +38,8 @@
                         <td><?php echo $counter; ?></td>
                         <td><?php echo $row['guest_name']; ?></td>
                         <td><?php echo $row['contact']; ?></td>
-                        <td><?php echo $row['check_in_date']; ?></td>
-                        <td><?php echo $row['expected_check_out']; ?></td>
+                        <td><?php echo $row['check_in_date']; ?> || <?php echo $row['check_in_time']; ?></td>
+                        <td><?php echo $row['expected_check_out']; ?> || <?php echo $row['check_out_time']; ?></td>
                         <td><?php echo $row['unit_name']; ?></td>
                         <td><?php echo $row['unit_type_name']; ?></td>
                         <td>₱<?php echo number_format($row['price_per_day'], 2); ?></td>
@@ -59,7 +58,7 @@
 
                         <td>
                             <span class="badge <?php 
-                                if($row['status'] == 'Reserved') echo 'badge-warning'; 
+                                if($row['status'] == 'Pending') echo 'badge-warning'; 
                                 else if($row['status'] == 'Confirmed') echo 'badge-success'; 
                                 else echo 'badge-secondary'; 
                             ?>">
