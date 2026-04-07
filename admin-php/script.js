@@ -290,7 +290,22 @@ function editRoom(unitId) {
         document.getElementById("Tblcontent").innerHTML = data;
     });
 }
-
+function deleteRoom(unitId) {
+    if (confirm("Are you sure you want to PERMANENTLY delete this room? This cannot be undone.")) {
+        fetch("php/delete_room.php?unit_id=" + unitId)
+        .then(response => response.text())
+        .then(result => {
+            if (result.trim() === "success") {
+                alert("Room Deleted Successfully!");
+                loadRooms(); 
+            }
+            else {
+                alert("Error: " + result);
+            }
+        }
+        );
+    }
+}
 function updateRoomData(unit_id) {
     var name = document.getElementById('new_unit_name').value;
     var type = document.getElementById('new_unit_type').value;
