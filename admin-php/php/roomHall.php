@@ -11,10 +11,10 @@
     <table class="reservationTable">
              <thead>
                 <tr>
-                    <th>UNIT TYPE</th>
+                    <th>ROOM TYPE</th>
                     <th>CATEGORY</th>
-                    <th>UNIT # NAME</th>
-                    <th>UNIT PRICE</th>
+                    <th>ROOM NUMBER | FLOOR</th>
+                    <th>ROOM PRICE</th>
                     <th>STATUS</th>
                     <th>ACTION</th>
                 </tr>
@@ -30,7 +30,7 @@
                     <tr>
                         <td><?php echo $row['unit_type_name']; ?></td>
                         <td><?php echo ($row['category_name']); ?></td>
-                        <td><?php echo $row['unit_name']; ?></td>
+                        <td><?php echo $row['unit_name']; ?> | <?php echo $row['floor']; ?></td>
                         <td><?php echo $row['price_per_day']; ?></td>
                         <td><?php echo $row['status']; ?></td>
                         <td>

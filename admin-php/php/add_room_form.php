@@ -17,7 +17,8 @@ $db = mysqli_connect($host, $username, $password, $database);
             $types = mysqli_query($db, "SELECT * FROM unit_types");
             while($t = mysqli_fetch_array($types)) { ?>
                 <option value="<?php echo $t['unit_type_id']; ?>">
-                    <?php echo $t['unit_type_name']; ?> (₱<?php echo $t['price_per_day']; ?>)
+                    <?php echo $t['unit_type_name']; ?> (₱<?php echo $t['price_per_day']; ?>) 
+                    (<?php echo $t['floor']; ?>)
                 </option>
             <?php } ?>
         </select><br><br>
