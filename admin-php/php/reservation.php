@@ -20,7 +20,6 @@
                         <th>ROOM PRICE</th>
                         <th>STAY DAYS</th>
                         <th>TOTAL AMOUNT</th>
-                        <th>PAYMENT</th>
                         <th>STATUS</th>
                         <th>ACTION</th>
                     </tr>
