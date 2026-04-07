@@ -243,26 +243,28 @@ function loadAddRoomForm() {
     });
 }
 
+function setUnitFloor() {
+    var type = document.getElementById('new_unit_type');
+    var floor = type.options[type.selectedIndex].getAttribute('data-floor');
+    document.getElementById('new_floor').value = floor;
+}
+
 function saveRoomData(btnId) {
     var name = document.getElementById('new_unit_name').value;
     var type = document.getElementById('new_unit_type').value;
+    var floor = document.getElementById('new_floor').value;
     var category = document.getElementById('new_category').value;
 
-    if (name == "" || category == "0") {
+    if (name == "" || category == "0" || type == "0") {
         alert("Please fill in all fields.");
         return;
-    }
-
-    if (type == "0" && new_unit_type == "") {
-        alert("Please select a unit type or enter a new unit type.");
-        return;
-    }
-
+        }
 
     if (confirm("Are you sure you want to add this room?")) {
-        fetch("php/save_room.php?name=" + name + 
-              "&type=" + type + 
-              "&category=" + category)
+        fetch("php/save_room.php?name=" + encodeURIComponent(name) + 
+              "&type=" + encodeURIComponent(type) + 
+              "&floor=" + encodeURIComponent(floor) + 
+              "&category=" + encodeURIComponent(category))
         .then(response => response.text())
         .then(result => {
             if (result.trim() === "success") {

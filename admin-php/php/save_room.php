@@ -6,6 +6,9 @@ $name = $_GET['name'];
 $type = ""; 
 $type = $_GET['type'];
 
+$floor = "";
+$floor = $_GET['floor'];
+
 $category = ""; 
 $category = $_GET['category'];
 
@@ -20,14 +23,15 @@ $dbconn = mysqli_connect($host, $username, $password, $database);
 
 
 if($new_unit_type != ""){
-    $check = mysqli_query($dbconn, "SELECT unit_type_id FROM unit_types WHERE unit_type_name = '$new_unit_type'");
+    $check = mysqli_query($dbconn, "SELECT unit_type_id, floor FROM unit_types WHERE unit_type_name = '$new_unit_type'");
 
     if(mysqli_num_rows($check) > 0){
         $row = mysqli_fetch_array($check);
         $type = $row['unit_type_id'];
+        $floor = $row['floor'];
     } else {
-        $save_type = mysqli_query($dbconn, "INSERT INTO unit_types (unit_type_name, price_per_day) 
-            VALUES ('$new_unit_type', '$new_price_per_day')");
+        $save_type = mysqli_query($dbconn, "INSERT INTO unit_types (unit_type_name, floor, price_per_day) 
+            VALUES ('$new_unit_type', '$floor', '$new_price_per_day')");
 
         if($save_type){
             $type = mysqli_insert_id($dbconn);
@@ -44,11 +48,9 @@ if($name == "" || $category == "" || $category == "0" || $type == "" || $type ==
     exit;
 }
 
-// 5. Perform the Insert
-$save = mysqli_query($dbconn, "INSERT INTO units (unit_name, unit_type_id, category_id, status) 
-    VALUES ('$name', '$type', '$category', 'Available')");
+$save = mysqli_query($dbconn, "INSERT INTO units (unit_name, floor, unit_type_id, category_id, status) 
+    VALUES ('$name', '$floor', '$type', '$category', 'Available')");
 
-// 6. Output result
 if($save){
     echo "success";
 } else {

@@ -11,17 +11,20 @@ $db = mysqli_connect($host, $username, $password, $database);
         <input type="text" id="new_unit_name" placeholder="e.g. Room 101"><br><br>
 
         <label>Unit Type</label><br>
-        <select id="new_unit_type">
-            <option value="0">-- Select Type --</option>
+        <select id="new_unit_type" onchange="setUnitFloor()">
+            <option value="0" data-floor="">-- Select Type --</option> 
             <?php 
             $types = mysqli_query($db, "SELECT * FROM unit_types");
             while($t = mysqli_fetch_array($types)) { ?>
-                <option value="<?php echo $t['unit_type_id']; ?>">
+                <option value="<?php echo $t['unit_type_id']; ?>" data-floor="<?php echo $t['floor']; ?>">
                     <?php echo $t['unit_type_name']; ?> (₱<?php echo $t['price_per_day']; ?>) 
                     (<?php echo $t['floor']; ?>)
                 </option>
             <?php } ?>
         </select><br><br>
+
+        <label>Floor</label><br>
+        <input type="text" id="new_floor" readonly><br><br>
 
         <label>Category</label><br>
         <select id="new_category">
