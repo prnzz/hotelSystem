@@ -3,7 +3,6 @@
     <div>
         <h2>Payment Status</h2>
     </div>
-        <button onclick="backToDashboard()">Back</button>
     <body>
         <div class="table-wrapper">
             <div class="table-header">Paid Reservations</div>

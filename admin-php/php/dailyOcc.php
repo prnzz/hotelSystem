@@ -2,7 +2,6 @@
     <div>
         <h2>ROOMS And FUNCTION HALL Occupancy</h2>
     </div>
-    <button onclick="backtoDashboard()">Back</button>
 <body>        
 <div class="table-wrapper">
     <div class="table-header">ROOMS</div>

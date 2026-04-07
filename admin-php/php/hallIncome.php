@@ -2,7 +2,6 @@
     <div>
         <h2>PAID Function Halls</h2>
     </div>
-    <button onclick="backToDashboard()">Back</button>
     <body>
         <div class="table-wrapper">
             <div class="table-header">Paid Function Halls</div>
