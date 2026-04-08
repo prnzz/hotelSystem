@@ -126,26 +126,26 @@ $total_sales = 0;
 
         <?php
         $count = 0;
-        while ($row = mysqli_fetch_assoc($query)) {
+        while ($row = mysqli_fetch_array($query)) {
             $count++;
             $total_sales += $row['amount'];
         ?>
         <tr>
             <td><?php echo $count; ?></td>
             <td><?php echo date("Y-m-d h:i A", strtotime($row['payment_date'])); ?></td>
-            <td><?php echo htmlspecialchars($row['guest_name']); ?></td>
-            <td><?php echo htmlspecialchars($row['contact']); ?></td>
-            <td><?php echo htmlspecialchars($row['unit_name']); ?></td>
-            <td><?php echo htmlspecialchars($row['unit_type_name']); ?></td>
-            <td><?php echo htmlspecialchars($row['category_name']); ?></td>
-            <td><?php echo htmlspecialchars($row['check_in_date']); ?></td>
-            <td><?php echo htmlspecialchars($row['expected_check_out']); ?></td>
-            <td><?php echo htmlspecialchars($row['duration_days']); ?></td>
-            <td>₱<?php echo number_format($row['total_bill'], 2); ?></td>
-            <td>₱<?php echo number_format($row['amount'], 2); ?></td>
-            <td><?php echo htmlspecialchars($row['payment_method']); ?></td>
-            <td><?php echo htmlspecialchars($row['status']); ?></td>
-            <td><?php echo htmlspecialchars($row['payment_status']); ?></td>
+            <td><?php echo $row['guest_name']; ?></td>
+            <td><?php echo  $row['contact']; ?></td>
+            <td><?php echo  $row['unit_name']; ?></td>
+            <td><?php echo $row['unit_type_name']; ?></td>
+            <td><?php echo $row['category_name']; ?></td>
+            <td><?php echo $row['check_in_date']; ?></td>
+            <td><?php echo $row['expected_check_out']; ?></td>
+            <td><?php echo $row['duration_days']; ?></td>
+            <td>₱<?php echo $row['total_bill']; ?></td>
+            <td>₱<?php echo $row['amount']; ?></td>
+            <td><?php echo $row['payment_method']; ?></td>
+            <td><?php echo $row['status']; ?></td>
+            <td><?php echo $row['payment_status']; ?></td>
         </tr>
         <?php } ?>
     </table>
