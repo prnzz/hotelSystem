@@ -25,8 +25,9 @@
                 while($row = mysqli_fetch_array($roomList)){
                     ?>
                     <tr>
+                        <td><?php echo $counter ?></td>
                         <td><?php echo $row['unit_type_name']; ?></td>
-                        <td><?php echo ($row['category_name']); ?></td>
+                        <td><?php echo $row['category_name']; ?></td>
                         <td><?php echo $row['unit_name']; ?> | <?php echo $row['floor']; ?></td>
                         <td><?php echo $row['price_per_day']; ?></td>
                         <td><?php echo $row['status']; ?></td>

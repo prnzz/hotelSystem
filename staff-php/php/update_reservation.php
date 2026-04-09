@@ -33,12 +33,21 @@ if (isset($_GET['action'])) {
     } 
 
     if ($action == 'cancel') {
-        $unit_id = mysqli_real_escape_string($db, $_GET['unit_id']);
-        
-        $query = "UPDATE reservations SET status = 'Cancelled' WHERE reservation_id = '$res_id'";
+        $unit_id = $_GET['unit_id'];
+
+        $deletePayment = "DELETE FROM payments WHERE reservation_id = '$res_id'";
+
+        $query = "UPDATE reservations 
+                SET status = 'Cancelled', payment_status = 'Unpaid' 
+                WHERE reservation_id = '$res_id'";
+
         $query2 = "UPDATE units SET status = 'Available' WHERE unit_id = '$unit_id'";
-        
-        if (mysqli_query($db, $query) && mysqli_query($db, $query2)) {
+
+        if (
+            mysqli_query($db, $deletePayment) &&
+            mysqli_query($db, $query) &&
+            mysqli_query($db, $query2)
+        ) {
             echo "success";
         } else {
             echo "Error: " . mysqli_error($db);
