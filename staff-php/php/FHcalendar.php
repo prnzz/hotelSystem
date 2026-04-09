@@ -74,7 +74,7 @@ while ($row = $result->fetch_assoc()) {
 
 <div class="calendar-container">
     <div class="ledger">
-        <p>Green = Checked-In, Yellow = Reserved, Grey = No Booking</p>
+        <p>Green = Checked-In, Blue = Pending, Grey = No Booking</p>
     </div>
     <div class="calendar-header">
         <div class="header-left">
