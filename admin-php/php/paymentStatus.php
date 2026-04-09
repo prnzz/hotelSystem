@@ -132,7 +132,25 @@
                             <td><?php echo ($row['duration_days']) ?></td>
                             <td><?php echo ($row['price_per_day']) ?></td>
                             <td><?php echo ($row['total_bill']) ?></td>
-                            <td><?php echo ($row['status']) ?></td>
+                        <td>
+                            <span class="badge <?php 
+                                if($row['payment_status'] == 'Paid') echo 'badge-success'; 
+                                else if($row['payment_status'] == 'Partial') echo 'badge-warning'; 
+                                else echo 'badge-danger'; 
+                            ?>">
+                                <?php echo $row['payment_status']; ?>
+                            </span>
+                        </td>
+
+                        <td>
+                            <span class="badge <?php 
+                                if($row['status'] == 'Pending') echo 'badge-warning'; 
+                                else if($row['status'] == 'Confirmed') echo 'badge-success'; 
+                                else echo 'badge-secondary'; 
+                            ?>">
+                                <?php echo $row['status']; ?>
+                            </span>
+                        </td>
                             <td>
                             <div class="btn-group" role="group">
                                 <button type="button" class="btn btn-secondary" 
