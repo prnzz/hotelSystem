@@ -34,7 +34,7 @@ $sql = "
         unit_type,
         category_name
     FROM vw_all_transactions
-    WHERE status IN ('Reserved', 'Checked-In')
+    WHERE status IN ('Pending', 'Checked-In')
       AND category_name = 'FUNCTION HALL'
       AND unit_type = 'Function Hall'
       AND check_in_date <= ?
