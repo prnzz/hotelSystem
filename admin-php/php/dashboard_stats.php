@@ -25,7 +25,7 @@ $rooms_occ = $occ_data['rooms_active'] ?? 0;
 $halls_occ = $occ_data['halls_active'] ?? 0;
 
 // --- 2. INCOME MONITOR (Rooms vs Halls) ---
-// Sums total_bill for non-cancelled reservations based on category
+// Sums total_bill for paid reservations based on category
 $income_query = $conn->query("
     SELECT 
         COALESCE(SUM(CASE WHEN cat.category_name = 'ROOM' THEN r.total_bill ELSE 0 END), 0) as room_income,
@@ -33,7 +33,7 @@ $income_query = $conn->query("
     FROM reservations r
     JOIN units u ON r.unit_id = u.unit_id
     JOIN categories cat ON u.category_id = cat.category_id
-    WHERE r.status != 'Cancelled'
+    WHERE r.status != 'Cancelled' AND r.payment_status = 'Paid'
 ");
 $inc_data = $income_query ? $income_query->fetch_assoc() : [];
 $room_total = $inc_data['room_income'] ?? 0;
@@ -49,7 +49,7 @@ $best_selling = $conn->query("
     FROM reservations r
     JOIN units u ON r.unit_id = u.unit_id
     JOIN unit_types ut ON u.unit_type_id = ut.unit_type_id
-    WHERE r.status != 'Cancelled'
+    WHERE r.status != 'Cancelled' AND r.payment_status = 'Paid'
     GROUP BY ut.unit_type_id, ut.unit_type_name
     ORDER BY freq DESC, rev DESC
     LIMIT 1
