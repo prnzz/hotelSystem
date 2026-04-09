@@ -40,7 +40,7 @@ $room_total = $inc_data['room_income'] ?? 0;
 $hall_total = $inc_data['hall_income'] ?? 0;
 
 // --- 3. BEST SELLING (Frequency & Revenue) ---
-// Finds the category that generates the most bookings and revenue
+// Finds the Unit_type that generates the most bookings and revenue
 $best_selling = $conn->query("
     SELECT 
         ut.unit_type_name,

@@ -37,6 +37,9 @@ if ($u_id) {
 
 
         <input type="number" id="input_new_price_per_day" value="<?php echo $row['price_per_day']; ?>" placeholder="Price per Day" step="0.01"><br><br>
+        
+        <label>Floor</label><br>
+        <input type="text" id="new_floor" value="<?php echo $row['floor']; ?>" readonly><br><br>
 
         <label>Category</label><br>
         <select id="new_category">

@@ -18,7 +18,6 @@ $db = mysqli_connect($host, $username, $password, $database);
             while($t = mysqli_fetch_array($types)) { ?>
                 <option value="<?php echo $t['unit_type_id']; ?>" data-floor="<?php echo $t['floor']; ?>">
                     <?php echo $t['unit_type_name']; ?> (₱<?php echo $t['price_per_day']; ?>) 
-                    (<?php echo $t['floor']; ?>)
                 </option>
             <?php } ?>
         </select><br><br>
