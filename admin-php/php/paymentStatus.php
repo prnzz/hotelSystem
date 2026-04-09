@@ -10,18 +10,19 @@
                 <table class="reservationTable">
                  <thead>
                     <tr>
-                        <th>#</th>
-                        <th>GUEST NAME</th>
-                        <th>CONTACT</th>
-                        <th>CHECK-IN || CHECK-IN TIME</th>
-                        <th>CHECK-OUT || CHECK-OUT TIME</th>
-                        <th>ROOM NUMBER | FLOOR</th>
-                        <th>ROOM TYPE</th>
-                        <th>ROOM PRICE</th>
-                        <th>STAY DAYS</th>
-                        <th>TOTAL AMOUNT</th>
-                        <th>STATUS</th>
-                        <th>ACTION</th>
+                            <th>#</th>
+                            <th>GUEST NAME</th>
+                            <th>CONTACT</th>
+                            <th>CHECK-IN || CHECK-IN TIME</th>
+                            <th>CHECK-OUT || CHECK-OUT TIME</th>
+                            <th>ROOM NUMBER | FLOOR</th>
+                            <th>ROOM TYPE</th>
+                            <th>ROOM PRICE</th>
+                            <th>STAY DAYS</th>
+                            <th>TOTAL AMOUNT</th>
+                            <th>PAYMENT</th>
+                            <th>STATUS</th>
+                            <th>ACTION</th>
                     </tr>
                 </thead>
                 
@@ -35,25 +36,17 @@
                     while($row = mysqli_fetch_array($customerList)){
                         $counter++;
                     ?>
-                    <tr>
-                        <td><?php echo $counter; ?></td>
-                        <td><?php echo $row['guest_name']; ?></td>
-                        <td><?php echo $row['contact']; ?></td>
-                        <td>
-                            <?php echo $row['check_in_date']; ?> || 
-                            <?php echo date("h:i A", strtotime($row['check_in_time'])); ?>
-                        </td>
-
-                        <td>
-                            <?php echo $row['expected_check_out']; ?> || 
-                            <?php echo date("h:i A", strtotime($row['check_out_time'])); ?>
-                        </td>
-                        <td><?php echo $row['unit_name']; ?> | <?php echo $row['floor']; ?></td>
-                        <td><?php echo $row['unit_type_name']; ?></td>
-                        <td>₱<?php echo number_format($row['price_per_day'], 2); ?></td>
-                        <td><?php echo $row['duration_days']; ?></td>
-                        <td><strong>₱<?php echo number_format($row['total_bill'], 2); ?></strong></td>
-
+                        <tr>
+                            <td><?php echo $counter ?></td>
+                            <td><?php echo ($row['guest_name']) ?></td>
+                            <td><?php echo ($row['contact']) ?></td>
+                            <td><?php echo ($row['unit_name']) ?></td>
+                            <td><?php echo ($row['unit_type_name']) ?></td>
+                            <td><?php echo ($row['check_in_date']) ?></td>
+                            <td><?php echo ($row['expected_check_out']) ?></td>
+                            <td><?php echo ($row['duration_days']) ?></td>
+                            <td><?php echo ($row['price_per_day']) ?></td>
+                            <td><?php echo ($row['total_bill']) ?></td>
                         <td>
                             <span class="badge <?php 
                                 if($row['payment_status'] == 'Paid') echo 'badge-success'; 
@@ -74,12 +67,12 @@
                             </span>
                         </td>
                             <td>
-                                <div class="btn-group" role="group">
-                                    <button type="button" class="btn btn-secondary" 
-                                        onclick="viewCustomerDetails('<?php echo $row['customer_id']; ?>', 'res')">
-                                        View Details
-                                    </button>
-                                </div>
+                            <div class="btn-group" role="group">
+                                <button type="button" class="btn btn-secondary" 
+                                    onclick="viewCustomerDetails('<?php echo $row['customer_id']; ?>', 'res')">
+                                    View Details
+                                </button>
+                            </div>
                             </td>
                         </tr>
                         <?php

@@ -10,15 +10,14 @@ if (!$conn) {
 mysqli_set_charset($conn, "utf8mb4");
 
 // --- 1. DAILY OCCUPANCY (Rooms vs Halls) ---
-// Counts currently checked-in reservations split by category
+// Counts occupied units split by category based on room status
 $occupancy_query = $conn->query("
     SELECT 
         COALESCE(SUM(CASE WHEN cat.category_name = 'ROOM' THEN 1 ELSE 0 END), 0) as rooms_active,
         COALESCE(SUM(CASE WHEN cat.category_name = 'FUNCTION HALL' THEN 1 ELSE 0 END), 0) as halls_active
-    FROM reservations r
-    JOIN units u ON r.unit_id = u.unit_id
+    FROM units u
     JOIN categories cat ON u.category_id = cat.category_id
-    WHERE r.status = 'Checked-In'
+    WHERE u.status = 'Occupied'
 ");
 $occ_data = $occupancy_query ? $occupancy_query->fetch_assoc() : [];
 $rooms_occ = $occ_data['rooms_active'] ?? 0;
