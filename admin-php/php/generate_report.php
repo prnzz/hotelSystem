@@ -2,9 +2,6 @@
 include('../../conn/connection.php');
 $dbconn = mysqli_connect($host, $username, $password, $database);
 
-if (!$dbconn) {
-    die("Database connection failed: " . mysqli_connect_error());
-}
 
 $query = mysqli_query($dbconn, "
     SELECT 
@@ -33,9 +30,6 @@ $query = mysqli_query($dbconn, "
     ORDER BY p.payment_date DESC
 ");
 
-if (!$query) {
-    die("Query failed: " . mysqli_error($dbconn));
-}
 
 $total_sales = 0;
 ?>
@@ -100,7 +94,6 @@ $total_sales = 0;
     <h2>Financial Sales Report</h2>
     <h4>Hotel Management System</h4>
     <div class="report-info">
-        <p>Generated Date: <?php echo date("F d, Y h:i A"); ?></p>
         <p>Report Type: Financial Sales Timeline</p>
         <p>Excluded Tables: Check-In and Check-Out</p>
     </div>
@@ -151,14 +144,8 @@ $total_sales = 0;
     </table>
 
     <div class="total-box">
-        Total Financial Sales: ₱<?php echo number_format($total_sales, 2); ?>
+        Total Financial Sales: ₱<?php echo $total_sales ?>
     </div>
-
-    <script>
-        window.onload = function () {
-            window.print();
-        };
-    </script>
 
 </body>
 </html>
