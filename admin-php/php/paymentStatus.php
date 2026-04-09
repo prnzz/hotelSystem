@@ -30,7 +30,7 @@
                     <?php
                     include('../../conn/connection.php');
                     $db = mysqli_connect($host, $username, $password, $database);
-                    $customerList = mysqli_query($db, "SELECT * FROM `current_reservation_in_customer` WHERE payment_status = 'Paid'");
+                    $customerList = mysqli_query($db, "SELECT * FROM `current_reservation_in_customer` WHERE payment_status = 'Paid' AND status != 'Cancelled'");
                     $counter = 0;
                     
                     while($row = mysqli_fetch_array($customerList)){
@@ -109,7 +109,7 @@
                         <?php
                         include('../../conn/connection.php');
                         $db = mysqli_connect($host, $username, $password, $database);
-                        $customerList = mysqli_query($db, "SELECT * FROM `current_reservation_in_customer` WHERE payment_status = 'Unpaid'");
+                        $customerList = mysqli_query($db, "SELECT * FROM `current_reservation_in_customer` WHERE payment_status = 'Unpaid' AND status != 'Cancelled'");
                         $counter = 0;
                         while($row = mysqli_fetch_array($customerList)){
                         $counter++;
