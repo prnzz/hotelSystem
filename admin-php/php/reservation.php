@@ -10,18 +10,19 @@
                 <table class="reservationTable">
                  <thead>
                     <tr>
-                        <th>#</th>
-                        <th>GUEST NAME</th>
-                        <th>CONTACT</th>
-                        <th>CHECK-IN || CHECK-IN TIME</th>
-                        <th>CHECK-OUT || CHECK-OUT TIME</th>
-                        <th>ROOM NUMBER | FLOOR</th>
-                        <th>ROOM TYPE</th>
-                        <th>ROOM PRICE</th>
-                        <th>STAY DAYS</th>
-                        <th>TOTAL AMOUNT</th>
-                        <th>STATUS</th>
-                        <th>ACTION</th>
+                            <th>#</th>
+                            <th>GUEST NAME</th>
+                            <th>CONTACT</th>
+                            <th>CHECK-IN || CHECK-IN TIME</th>
+                            <th>CHECK-OUT || CHECK-OUT TIME</th>
+                            <th>ROOM NUMBER | FLOOR</th>
+                            <th>ROOM TYPE</th>
+                            <th>ROOM PRICE</th>
+                            <th>STAY DAYS</th>
+                            <th>TOTAL AMOUNT</th>
+                            <th>PAYMENT</th>
+                            <th>STATUS</th>
+                            <th>ACTION</th>
                     </tr>
                 </thead>
                 
@@ -143,7 +144,25 @@
                             <td><?php echo ($row['duration_days']) ?></td>
                             <td><?php echo ($row['price_per_day']) ?></td>
                             <td><?php echo ($row['total_bill']) ?></td>
-                            <td><?php echo ($row['status']) ?></td>
+                                                    <td>
+                            <span class="badge <?php 
+                                if($row['payment_status'] == 'Paid') echo 'badge-success'; 
+                                else if($row['payment_status'] == 'Partial') echo 'badge-warning'; 
+                                else echo 'badge-danger'; 
+                            ?>">
+                                <?php echo $row['payment_status']; ?>
+                            </span>
+                        </td>
+
+                        <td>
+                            <span class="badge <?php 
+                                if($row['status'] == 'Pending') echo 'badge-warning'; 
+                                else if($row['status'] == 'Confirmed') echo 'badge-success'; 
+                                else echo 'badge-secondary'; 
+                            ?>">
+                                <?php echo $row['status']; ?>
+                            </span>
+                        </td>
                             <td>
                             <div class="btn-group" role="group">
                                 <button type="button" class="btn btn-secondary" 
