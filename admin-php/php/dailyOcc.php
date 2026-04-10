@@ -23,11 +23,12 @@
                 $roomList = mysqli_query($db, "SELECT * FROM `roomlist` WHERE category_name = 'Room' AND STATUS = 'Occupied'");
                 $counter = 0;
                 while($row = mysqli_fetch_array($roomList)){
+                    $counter++;
                     ?>
                     <tr>
-                        <td><?php echo $counter ?></td>
+                        <td><?php echo $counter; ?></td>
                         <td><?php echo $row['unit_type_name']; ?></td>
-                        <td><?php echo $row['category_name']; ?></td>
+                        <td><?php echo ($row['category_name']); ?></td>
                         <td><?php echo $row['unit_name']; ?> | <?php echo $row['floor']; ?></td>
                         <td><?php echo $row['price_per_day']; ?></td>
                         <td><?php echo $row['status']; ?></td>
@@ -58,8 +59,10 @@
                 $roomList = mysqli_query($db, "SELECT * FROM `roomlist` WHERE category_name = 'Function Hall' AND STATUS = 'Occupied'");
                 $counter = 0;
                 while($row = mysqli_fetch_array($roomList)){
+                    $counter++;
                     ?>
                     <tr>
+                        <td><?php echo $counter; ?></td>
                         <td><?php echo $row['unit_type_name']; ?></td>
                         <td><?php echo ($row['category_name']); ?></td>
                         <td><?php echo $row['unit_name']; ?> | <?php echo $row['floor']; ?></td>
