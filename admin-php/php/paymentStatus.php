@@ -1,11 +1,11 @@
 <div class="content-holder">
 
     <div>
-        <h2>Payment Status</h2>
+        <h2>PAYMENT STATUS</h2>
     </div>
     <body>
         <div class="table-wrapper">
-            <div class="table-header">Paid Reservations</div>
+            <div class="table-header">PAID Customer</div>
             <div class="table-scroll">
                 <table class="reservationTable">
                  <thead>
@@ -36,17 +36,25 @@
                     while($row = mysqli_fetch_array($customerList)){
                         $counter++;
                     ?>
-                        <tr>
-                            <td><?php echo $counter ?></td>
-                            <td><?php echo ($row['guest_name']) ?></td>
-                            <td><?php echo ($row['contact']) ?></td>
-                            <td><?php echo ($row['unit_name']) ?></td>
-                            <td><?php echo ($row['unit_type_name']) ?></td>
-                            <td><?php echo ($row['check_in_date']) ?></td>
-                            <td><?php echo ($row['expected_check_out']) ?></td>
-                            <td><?php echo ($row['duration_days']) ?></td>
-                            <td><?php echo ($row['price_per_day']) ?></td>
-                            <td><?php echo ($row['total_bill']) ?></td>
+                    <tr>
+                        <td><?php echo $counter; ?></td>
+                        <td><?php echo $row['guest_name']; ?></td>
+                        <td><?php echo $row['contact']; ?></td>
+                        <td>
+                            <?php echo $row['check_in_date']; ?> || 
+                            <?php echo date("h:i A", strtotime($row['check_in_time'])); ?>
+                        </td>
+
+                        <td>
+                            <?php echo $row['expected_check_out']; ?> || 
+                            <?php echo date("h:i A", strtotime($row['check_out_time'])); ?>
+                        </td>
+                        <td><?php echo $row['unit_name']; ?> | <?php echo $row['floor']; ?></td>
+                        <td><?php echo $row['unit_type_name']; ?></td>
+                        <td>₱<?php echo number_format($row['price_per_day'], 2); ?></td>
+                        <td><?php echo $row['duration_days']; ?></td>
+                        <td><strong>₱<?php echo number_format($row['total_bill'], 2); ?></strong></td>
+
                         <td>
                             <span class="badge <?php 
                                 if($row['payment_status'] == 'Paid') echo 'badge-success'; 
@@ -66,13 +74,12 @@
                                 <?php echo $row['status']; ?>
                             </span>
                         </td>
-                            <td>
-                            <div class="btn-group" role="group">
-                                <button type="button" class="btn btn-secondary" 
-                                    onclick="viewCustomerDetails('<?php echo $row['customer_id']; ?>', 'res')">
-                                    View Details
-                                </button>
-                            </div>
+                            <td>                             
+                                    <button type="button" class="btn btn-secondary" 
+                                        onclick="viewCustomerDetails('<?php echo $row['customer_id']; ?>', 'res')">
+                                        View Details
+                                    </button>
+                                </div>
                             </td>
                         </tr>
                         <?php
@@ -85,7 +92,7 @@
         
         <br>
                 <div class="table-wrapper">
-            <div class="table-header">Unpaid Reservations</div>
+            <div class="table-header">UNPAID CUSTOMERS</div>
             <div class="table-scroll">
                 <table class="reservationTable">
                     <thead>
@@ -109,7 +116,7 @@
                         <?php
                         include('../../conn/connection.php');
                         $db = mysqli_connect($host, $username, $password, $database);
-                        $customerList = mysqli_query($db, "SELECT * FROM `current_reservation_in_customer` WHERE payment_status = 'Unpaid' AND status != 'Cancelled'");
+                         $customerList = mysqli_query($db, "SELECT * FROM `current_reservation_in_customer` WHERE payment_status = 'Unpaid' AND status != 'Cancelled'");
                         $counter = 0;
                         while($row = mysqli_fetch_array($customerList)){
                         $counter++;
@@ -125,7 +132,7 @@
                             <td><?php echo ($row['duration_days']) ?></td>
                             <td><?php echo ($row['price_per_day']) ?></td>
                             <td><?php echo ($row['total_bill']) ?></td>
-                        <td>
+                                                    <td>
                             <span class="badge <?php 
                                 if($row['payment_status'] == 'Paid') echo 'badge-success'; 
                                 else if($row['payment_status'] == 'Partial') echo 'badge-warning'; 
@@ -145,7 +152,7 @@
                             </span>
                         </td>
                             <td>
-                            <div class="btn-group" role="group">
+                            <div class="btn-group" role="group">     
                                 <button type="button" class="btn btn-secondary" 
                                     onclick="viewCustomerDetails('<?php echo $row['customer_id']; ?>', 'res')">
                                     View Details
