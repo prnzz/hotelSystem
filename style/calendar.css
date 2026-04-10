@@ -80,10 +80,6 @@
     background: #dcfce7;
     color: #166534;
 }
-.unit-label.checkedout {
-    background: #dcfce7;
-    color: #5f0303;
-}
 
 .unit-label.reserved {
     background: #fef3c7;

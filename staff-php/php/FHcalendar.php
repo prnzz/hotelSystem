@@ -34,8 +34,9 @@ $sql = "
         unit_type,
         category_name
     FROM vw_all_transactions
-    WHERE status IN ('Pending', 'Checked-In', 'Checked-Out')
-    
+    WHERE status IN ('Pending', 'Checked-In')
+      AND category_name = 'FUNCTION HALL'
+      AND unit_type = 'Function Hall'
       AND check_in_date <= ?
       AND expected_check_out >= ?
     ORDER BY check_in_date ASC, unit_type ASC, unit ASC
