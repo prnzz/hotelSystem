@@ -9,6 +9,7 @@
     <table class="reservationTable">
              <thead>
                 <tr>
+                    <td>#</td>
                     <th>ROOM TYPE</th>
                     <th>CATEGORY</th>
                     <th>ROOM NUMBER | FLOOR</th>
@@ -45,6 +46,7 @@
     <table class="reservationTable">
              <thead>
                 <tr>
+                    <td>#</td>
                     <th>ROOM TYPE</th>
                     <th>CATEGORY</th>
                     <th>ROOM NUMBER | FLOOR</th>
